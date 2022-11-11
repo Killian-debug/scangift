@@ -1,0 +1,21 @@
+
+.scangif {
+    width: 40%;
+    height: 40%;
+    filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
+}
+
+@media screen and ( max-width: 400px ) {
+    .scangif {
+        width: 90%;
+    }
+}
+.title-s-1 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
