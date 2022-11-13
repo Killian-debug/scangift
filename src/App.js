@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./views/Home.js";
 import HomeOld from "./views/Home.old.js";
-import LandingPage from "./views/LandingPage.js";
+import GiftPage from "./views/GiftPage.js";
 import ScanPage from "./views/ScanPage.js";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/scanpage" element={<ScanPage />}>
               {" "}
             </Route>
-            <Route path="/scangift" element={<LandingPage />}>
+            <Route path="/giftpage" element={<GiftPage />}>
               {" "}
             </Route>
 

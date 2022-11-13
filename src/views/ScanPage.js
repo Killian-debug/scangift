@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { QrReader } from 'react-qr-reader';
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ArrowLeft from '../components/ArrowLeft';
 
 // import {Html5QrcodeScanner} from "html5-qrcode"
@@ -15,22 +15,24 @@ const ScanPage = () => {
     //url du typeForm
     const typeForm = '';
 
-    const readerStyle = {
-        width: '90%',
-    };
+
+    // const readerStyle = {
+       
+    //     width : '100%'
+    // }
 
     const handleErrorScan = (result, error) => {
         if (!!result) {
             setloading(true)
             setData(result?.text);
             setloading(false)
-            redirect('/scangift')
+            //redirect('/scangift')
         }
-
         if (!!error) {
             console.info(error);
         }
     };
+
 
     return (
         <div>
@@ -42,23 +44,24 @@ const ScanPage = () => {
                     </div>
 
                     <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                    <div id="reader" width="50%" ></div>
+                    {/* <div id="reader" width="50%" ></div> */}
                         <QrReader
-                            containerStyle={readerStyle}
-                            scanDelay={300}
-                            onResult={handleErrorScan}
-                            className='border-0'
+                        // containerStyle={readerStyle}
+                        scanDelay={300}
+                        onResult={handleErrorScan}
+                        className='qrReader'
+                        constraints={{ facingMode: 'environment' }}
                         // containerStyle={readerStyle}
                         // onResult={handleErrorScan}
                         // legacy
-                        />
-
+                />
+                       
                     </div>
                     <div className='loader'>
                         <ClipLoader
                            
                             loading={loading}
-                            size={100}
+                            size={70}
                             aria-label="Scanne en cours"
                         />
                     </div>
@@ -76,8 +79,6 @@ const ScanPage = () => {
                     </NavLink>
                 </div>
            
-
-
         </div>
     );
 };

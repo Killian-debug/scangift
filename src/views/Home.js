@@ -2,8 +2,6 @@ import React from 'react';
 import scangif from "../assets/img/qr-code-scanner-tuto.gif";
 import { NavLink } from "react-router-dom";
 import GoButton from '../components/GoButton.js';
-import ArrowLeft from '../components/ArrowLeft';
-//import { Container } from "@material-ui/core";
 
 const Home = () => {
 
@@ -13,7 +11,6 @@ const Home = () => {
     return (
         <div>
             <div className="card bg-transparent text-center border-0">
-                <ArrowLeft/>
                 <div className="card-header bg-transparent border-0">
                     <h3 className='title-s-1 my-4' >Scanner pour gagner !</h3>
                 </div>

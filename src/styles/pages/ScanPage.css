@@ -1,0 +1,11 @@
+@media screen and ( max-width: 400px ) {
+    .qrReader {
+        width: 90% !important;
+    }
+}
+
+@media screen and ( min-width: 400px ) {
+    .qrReader {
+        width: 25% !important;
+    }
+}
