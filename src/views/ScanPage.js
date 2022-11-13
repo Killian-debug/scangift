@@ -26,6 +26,7 @@ const ScanPage = () => {
             setloading(true)
             setData(result?.text);
             setloading(false)
+            alert('info : ' + data)
             //redirect('/scangift')
         }
         if (!!error) {
