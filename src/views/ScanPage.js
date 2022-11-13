@@ -68,7 +68,7 @@ const ScanPage = () => {
                     <div className="card-footer bg-transparent">
                         <div className="btn-go">
                             <div className="btn-circle-go">
-                                <p className='text-go' > Resultat : {data.toString} </p>
+                                <p className='text-go' > Resultat : {data} </p>
                             </div>
                         </div>
                     </div>
