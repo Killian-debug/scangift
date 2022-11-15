@@ -6,4 +6,5 @@
     left: 24px;
     /* margin-top: 10px; */
     top: calc(2% + 10px);
+    cursor: pointer;
 }

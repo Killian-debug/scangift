@@ -2,6 +2,7 @@ import React from 'react';
 import scangif from "../assets/img/qr-code-scanner-tuto.gif";
 import { NavLink } from "react-router-dom";
 import GoButton from '../components/GoButton.js';
+import ButtonPrimary from '../components/ButtonPrimary';
 
 const Home = () => {
 
@@ -25,11 +26,10 @@ const Home = () => {
                    
                 </div> */}
             </div>
-            <div className="btn-principal mx-auto text-center">
-                <NavLink to={typeForm} >
-                    <button className="button-79">Faire ma publicité</button>
-                </NavLink>
-            </div>
+            
+            {/* Button principal en bas de page */}
+                <ButtonPrimary toUrl={typeForm} text="Faire ma publicité" action='' />
+            
         </div>
     );
 };
