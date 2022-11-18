@@ -18,11 +18,9 @@ const ScanPage = () => {
     const typeForm = '';
 
     function Url_Valide(UrlTest, http_fac) {
-        if (http_fac){ //le segment "http://" est facultatif
-           var regexp = new RegExp("^((http|https)://)?(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|/|=|?)?]+)+$");
-         }else{
-          var regexp = new RegExp("^((http|https)://){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|/|=|?)?]+)+$");
-         }
+        
+          var regexp = new RegExp("[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
+         
         if (regexp.test(UrlTest)){
           alert ('Mon URL est valide');
         } else{
