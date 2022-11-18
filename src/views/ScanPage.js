@@ -10,12 +10,26 @@ import ButtonPrimary from '../components/ButtonPrimary';
 
 const ScanPage = () => {
 
-    const [data, setData] = useState('No data');
+    const [urlScanned, setUrlScanned] = useState('No data');
     const [loading, setloading] = useState();
     const [title, setTitle] = useState('Cherchez un Qr Code');
     
     //url du typeForm
     const typeForm = '';
+
+    function Url_Valide(UrlTest, http_fac) {
+        if (http_fac){ //le segment "http://" est facultatif
+           var regexp = new RegExp("^((http|https)://)?(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|/|=|?)?]+)+$");
+         }else{
+          var regexp = new RegExp("^((http|https)://){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|/|=|?)?]+)+$");
+         }
+        if (regexp.test(UrlTest)){
+          alert ('Mon URL est valide');
+        } else{
+          alert ("Mon URL n'est PAS valide");
+        }
+        return regexp.test(UrlTest);
+      }
     
 
 
@@ -31,9 +45,14 @@ const ScanPage = () => {
     const handleErrorScan = (result, error) => {
         if (!!result) {
             setloading(true)
-            setData(result?.text);
+            setUrlScanned(result?.text);
             setloading(false)
-            window.open(data, '_blank', 'noopener,noreferrer')
+
+            if (Url_Valide(urlScanned, true)) {
+                window.open(urlScanned, '_blank', 'noopener,noreferrer') 
+            } else {
+                console.log('data scanned :' + urlScanned)
+            }
         }
         if (!!error) {
             console.info(error);
@@ -72,7 +91,7 @@ const ScanPage = () => {
                     <div className="card-footer bg-transparent border-0">
                         <div className="btn-go">
                             <div className="btn-circle-go">
-                                <p className='text-go' > Resultat : {data} </p>
+                                <p className='text-go' > Resultat : {urlScanned} </p>
                             </div>
                         </div>
                     </div>
