@@ -8,6 +8,14 @@ h1 {
     font-weight: bold;
     color: aqua;
 }
+
+.title-s-1 {
+  word-wrap: break-word;
+}
+
+/* #root {
+  z-index: 2;
+} */
 .card-body {
   padding: 0;
 }

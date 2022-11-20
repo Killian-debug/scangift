@@ -1,37 +1,43 @@
 import Cookie from 'js-cookie';
 
 var useCookie = (function() {
-    var full_name = "";
   
-    var getCookie = (name, params ) => {
-      return  Cookie.get(name, params) ;    // Or pull this from cookie/localStorage
+  
+    var getCookie = (name ) => {
+      var x = Cookie.get(name)
+    
+      return x;    // Or pull this from cookie/localStorage
     };
 
     var setCookie = (name, value) => {
         const expD = new Date().getTime() + 60 * 1000;
-      full_name = Cookie.set(name, value, {
-        expires : expD
-      });     
-      // Also set this in cookie/localStorage
-    };
+        Cookie.set(name, JSON.stringify(value) , {
+          expires : expD
+        })
+        console.log('cc : ' + JSON.parse(value))
+        console.log('cok :' + Cookie.get(name))
+    }; 
+  
+    var delCookie = (name) => {
+      Cookie.remove(name)
+    }
 
     /**
      * Fonction de récupération des cookies
      * @param {String} name - nom du cookie
      * @returns {Boolean} true|false - true s'il existe et false si non
      */
-    var existCookie = (name) => {
-      if ( Cookie.get(name) != undefined || Cookie.get(name) != null || Cookie.get(name) != '') {
+    function ifCookie(name){
+      if ( Cookie.get(name) !== undefined && Cookie.get(name) !== null && Cookie.get(name) != '') 
         return true
-      } else {
-        return false
-      }
+      else return false
     };
   
     return {
         getCookie,
         setCookie,
-        existCookie,
+        ifCookie,
+        delCookie
     }
   
   })();

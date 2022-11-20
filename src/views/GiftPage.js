@@ -1,43 +1,45 @@
 import React, {useEffect, useState} from 'react';
 import { NavLink } from "react-router-dom";
 import ArrowLeft from '../components/ArrowLeft';
-import addImg from "../assets/img/pub2.jpg";
+
 import client from '../hooks/Data.js'
 import SliderAdd from '../components/SliderAdd'
 import ButtonPrimary from '../components/ButtonPrimary';
 import useCookie from '../hooks/Cookie';
 
-
 const GiftPage = () => {
 
     // const [imgUrl, setImgUrl] = useState(addImg);
-    const [annonce, setAnnonce] = useState({});
+    const [annonce, setAnnonce] = useState('');
 
     // decrémentation de limite 
     // generation de ref
     // add dans gagner
 
-    const i = Math.floor(Math.random() * 10)
-
-    
+    const i = Math.floor(Math.random() * 10) + 1
+   
+     
     useEffect(() => {
 
-        if (useCookie.existCookie('annonce')  ) {
+        if (!useCookie.ifCookie('annonce')  ) {
+           
             client.get('photos/'+i)
             .then(res => {
                 setAnnonce(res.data)
+                console.log('ann :' + JSON.stringify(annonce ))
                 //setImgUrl(res.data.url)
                 useCookie.setCookie('annonce', annonce)
-                console.log('form query : ' + annonce)
-            })
-            .catch( err => {
+                console.log('from query : ' + JSON.stringify(annonce))
+            }) 
+            .catch( err => {  
                 console.error(err)
-            } )
-        } else {
-            setAnnonce(useCookie.getCookie('annonce'))
-            console.log('from cookie : ' + annonce )
+            })
+        } else {   
+            var data = useCookie.getCookie('annonce')
+            console.log( 'from cookie :' + data)
+            data = JSON.parse(data)
+            setAnnonce(data) 
         }
-       
     }, []);
 
     var destination, msg, onDestClick = 'Visiter'

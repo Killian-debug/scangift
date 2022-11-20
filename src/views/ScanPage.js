@@ -67,7 +67,7 @@ const ScanPage = () => {
                         <h3 className='title-s-1' >{title}</h3>
                     </div>
                     
-                    <div className="card-body d-flex flex-column justify-content-center align-items-center my-4">
+                    <div className="card-body d-flex flex-column justify-content-center align-items-center my-2">
                     {/* <div id="reader" width="50%" ></div> */}
                         <QrReader
                         // containerStyle={readerStyle}

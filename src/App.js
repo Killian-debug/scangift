@@ -4,12 +4,15 @@ import Home from "./views/Home.js";
 import HomeOld from "./views/Home.old.js";
 import GiftPage from "./views/GiftPage.js";
 import ScanPage from "./views/ScanPage.js";
+import Place from "./views/Place.js";
+import Sidebar from "./components/Sidebar.js";
 
 const App = () => {
 
   return (
-    
-    <BrowserRouter>
+    <div>
+      <BrowserRouter>
+      <Sidebar />
           <Routes>
             <Route path="/" element={<Home />}>
               {" "}
@@ -24,13 +27,17 @@ const App = () => {
               {" "}
             </Route>
 
+            <Route path="/place/:giftplace" exact element={ <Place /> } />
+
             {/* Cela fonctionne si le chemin ne correspond à aucune option déjà présente */}
-            <Route path="*" element={<Home />}>
+            {/* <Route path="*" element={<Home />}>
               {" "}
-            </Route>
+            </Route> */}
           </Routes>
       
     </BrowserRouter>
+    </div>
+    
   );
 };
 

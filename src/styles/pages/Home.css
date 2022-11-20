@@ -5,9 +5,15 @@
     filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
 }
 
-@media screen and ( max-width: 400px ) {
+@media screen and ( 401px <= width <= 1820px) {
     .scangif {
-        width: 90%;
+        width: 50%;
+    }
+}
+
+@media screen and ( width <= 400px ) {
+    .scangif {
+        width: 75%;
     }
 }
 .title-s-1 {
