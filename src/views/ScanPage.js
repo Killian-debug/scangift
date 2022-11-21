@@ -19,7 +19,7 @@ const ScanPage = () => {
 
     function Url_Valide(UrlTest) {
         
-        var regexp = /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/ ;
+        var regexp = /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/ig ;
          
         // if (regexp.test(UrlTest)){
         //   alert ('Mon URL est valide');
