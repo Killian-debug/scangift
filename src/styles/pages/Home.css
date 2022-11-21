@@ -1,22 +1,22 @@
 
 .scangif {
-    width: 50%;
+    width: 40%;
     height: 40%;
     filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
 }
 
-@media screen and ( 401px <= width <= 1820px) {
+@media screen and ( 451px <= width <= 820px) {
     .scangif {
         width: 60%;
         margin-bottom: 3rem;
-        margin-top: 2em;
+       
     }
 }
 
-@media screen and ( width <= 400px ) {
+@media screen and ( width <= 450px ) {
     .scangif {
         width: 80%;
         margin-bottom: 1rem;
-        margin-top: 3em;
+       
     }
 }

@@ -11,26 +11,24 @@ import ButtonPrimary from '../components/ButtonPrimary';
 const ScanPage = () => {
 
     const [urlScanned, setUrlScanned] = useState('No data');
-    const [loading, setloading] = useState();
+    const [loading, setloading] = useState(false);
     const [title, setTitle] = useState('Cherchez un Qr Code');
     
     //url du typeForm
     const typeForm = '';
 
-    function Url_Valide(UrlTest, http_fac) {
+    function Url_Valide(UrlTest) {
         
-          var regexp = new RegExp("[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
+        var regexp = /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/ ;
          
-        if (regexp.test(UrlTest)){
-          alert ('Mon URL est valide');
-        } else{
-          alert ("Mon URL n'est PAS valide");
-        }
+        // if (regexp.test(UrlTest)){
+        //   alert ('Mon URL est valide');
+        // } else{
+        //   alert ("Mon URL n'est PAS valide");
+        // }
         return regexp.test(UrlTest);
       }
     
-
-
     useEffect(() => {
         if (loading) {
             setTitle('Scan en cours...')
@@ -41,12 +39,14 @@ const ScanPage = () => {
 
 
     const handleErrorScan = (result, error) => {
+        
+        setloading(true)
         if (!!result) {
-            setloading(true)
+            
             setUrlScanned(result?.text);
             setloading(false)
 
-            if (Url_Valide(urlScanned, true)) {
+            if (Url_Valide(urlScanned)) {
                 window.open(urlScanned, '_blank', 'noopener,noreferrer') 
             } else {
                 console.log('data scanned :' + urlScanned)
@@ -54,9 +54,9 @@ const ScanPage = () => {
         }
         if (!!error) {
             console.info(error);
+            setloading(false)
         }
     };
-
 
     return (
         <div>
