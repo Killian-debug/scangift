@@ -96,7 +96,7 @@ const ScanPage = () => {
                 </div>
 
                 {/* Button principal en bas de page */}
-                    <ButtonPrimary toUrl={typeForm} text='Faire ma publicité' action='' />
+                    <ButtonPrimary toUrl={typeForm} text='Faire ma publicité' />
                
            
         </div>

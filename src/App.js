@@ -5,16 +5,16 @@ import HomeOld from "./views/Home.old.js";
 import GiftPage from "./views/GiftPage.js";
 import ScanPage from "./views/ScanPage.js";
 import Place from "./views/Place.js";
-import Sidebar from "./components/Sidebar.js";
+
 
 const App = () => {
 
   return (
-    <div>
+   
       <BrowserRouter>
       {/* <Sidebar /> */}
           <Routes>
-            <Route path="/" element={<Home />}>
+            <Route path="/scangift" element={<Home />}>
               {" "}
             </Route>
             <Route path="/homeold" element={<HomeOld />}>
@@ -36,7 +36,7 @@ const App = () => {
           </Routes>
       
     </BrowserRouter>
-    </div>
+   
     
   );
 };

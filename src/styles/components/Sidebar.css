@@ -4,12 +4,10 @@
   position: relative;
 }
 
-.togle {
-  display: none;
-}
+
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
-  
+  display: none;
   height: 100vh;
   width: 30vh;
   position: fixed;
