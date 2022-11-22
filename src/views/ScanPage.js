@@ -39,9 +39,9 @@ const ScanPage = () => {
 
     const handleErrorScan = (result, error) => {
         
-        setloading(true)
+        
         if (!!result) {
-            
+            setloading(true)
             setUrlScanned(result?.text);
             setloading(false)
 
@@ -50,10 +50,11 @@ const ScanPage = () => {
             } else {
                 console.log('data scanned :' + urlScanned)
             }
+            setloading(false)
         }
         if (!!error) {
             console.info(error);
-            setloading(false)
+            
         }
     };
 
