@@ -3,10 +3,10 @@ import { QrReader } from 'react-qr-reader';
 // import { NavLink, redirect } from "react-router-dom";
 import ArrowLeft from '../components/ArrowLeft';
 
-// import {Html5QrcodeScanner} from "html5-qrcode"
-
 import ClipLoader from 'react-spinners/ClipLoader';
 import ButtonPrimary from '../components/ButtonPrimary';
+
+import {FormUrl} from "../hooks/Env"; //URL du type form
 
 const ScanPage = () => {
 
@@ -14,8 +14,7 @@ const ScanPage = () => {
     const [loading, setloading] = useState(false);
     const [title, setTitle] = useState('Cherchez un Qr Code');
     
-    //url du typeForm
-    const typeForm = '';
+    const form = FormUrl
 
     function Url_Valide(UrlTest) {
         
@@ -96,7 +95,7 @@ const ScanPage = () => {
                 </div>
 
                 {/* Button principal en bas de page */}
-                    <ButtonPrimary toUrl={typeForm} text='Faire ma publicité' />
+                    <ButtonPrimary toUrl={form} text='Faire ma publicité' />
                
            
         </div>

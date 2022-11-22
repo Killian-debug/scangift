@@ -1,7 +1,4 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
-
-
 
 /**
  * 
@@ -11,11 +8,14 @@ import { NavLink } from "react-router-dom";
  * @returns 
  */
 const ButtonPrimary = ({text, toUrl, action}) => {
+
     return (
+
+        
         <div className="btn-principal mx-auto text-center" onClick={action}>
-                <NavLink to={toUrl} >
+                <a href={ toUrl } target="_blank" rel='noreferrer' >
                     <button className="button-79">{text}</button>
-                </NavLink>
+                </a>
         </div>
     );
 

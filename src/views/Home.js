@@ -2,12 +2,12 @@ import React from 'react';
 import scangif from "../assets/img/qr-code-scanner-tuto.gif";
 import GoButton from '../components/GoButton.js';
 import ButtonPrimary from '../components/ButtonPrimary';
-import typeForm from "../hooks/FormUrl";
+import {FormUrl} from "../hooks/Env";
 
 const Home = () => {
 
     //url du typeForm
-    //const typeForm = typeForm;
+    const formLink = FormUrl;
 
     return (
         <div>
@@ -28,7 +28,7 @@ const Home = () => {
             </div>
             
             {/* Button principal en bas de page */}
-                <ButtonPrimary toUrl={typeForm} text="Faire ma publicité" />
+                <ButtonPrimary toUrl={formLink} text="Faire ma publicité" />
             
         </div>
     );
