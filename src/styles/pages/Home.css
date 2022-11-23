@@ -5,7 +5,7 @@
     filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
 }
 
-@media screen and ( max-width : 820px) {
+@media screen and ( max-width : 820px) and (min-width : 451px) {
     .scangif {
         width: 60%;
         margin-bottom: 3rem;
