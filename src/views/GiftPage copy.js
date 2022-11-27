@@ -10,26 +10,21 @@ import {WinnerUrl} from "../hooks/Env";
 const GiftPage = () => {
   const [imgUrl, setImgUrl] = useState(addImg);
   const [annonce, setAnnonce] = useState({});
-  const [isWinner, setIsWinner] = useState(Boolean);
+  const [isWinner, setIsWinner] = useState();
   const [ref, setRef] = useState({ ref: "" });
   // decrémentation de limite
-  const [image, setImage] = useState(true);
+
   
 
-  const [addEl, setAddEl] = useState();
-  //var addEl  // element de l'annonce
 
-  var destination = ref.ref != "" ? WinnerUrl + ref.ref : annonce.url_des;
+  var addEl = useRef() ; // element de l'annonce
+
+  var destination = WinnerUrl + ref.ref ;
 
   const msg = "Visiter";
 
   const onDestClick = () => {
     console.log("CTA clicked");
-    // client.post("gagner", {
-    //   idAnncs : annonce.id_anncs,
-    //   idEvent : annonce.id_event,
-    //   ref : ref.ref, 
-    // });
   };
 
   useEffect(() => {
@@ -38,7 +33,7 @@ const GiftPage = () => {
         !useCookie.ifCookie("annonce") ||
         useCookie.getCookie("annonce") == ""
       ) {
-        await client
+        client
           .get("select/aleatoire/annonce")
           .then((res) => {
             const data = res.data.data;
@@ -58,6 +53,7 @@ const GiftPage = () => {
         console.log("from cookie :" + annonce.id_anncs);
         console.log("id_anncs: " + y.objectif);
       }
+     
        
     })();
   }, []);
@@ -70,17 +66,22 @@ const GiftPage = () => {
       setIsWinner(true);
       
       // initalisation de la réf s'il gagne | generation de ref
-      await client
+       client
         .get("generateur/ref")
         .then((res) => {
           const d = res.data.data;
           setRef(d); 
           console.log(d);
+
+          client.post("gagner", {
+            idAnncs : annonce.id_anncs,
+            idEvent : annonce.id_event,
+            ref : d.ref, 
+          });
           })
         .catch((err) => console.error(err));        
     } 
-    console.log(image)
-    setImage(false)
+      setIsWinner(false)
   })() 
   }, [annonce.type_anncs]); 
 
@@ -97,47 +98,46 @@ const GiftPage = () => {
   //     return ''; // Legacy method for cross browser support
   //   };
  var els = []
-const [medias, setMedias] = useState();
   // format d'affichage de l'annonce
   useEffect(() => {
     (async function() {
       // setTimeout(() => {
-        setMedias(annonce.media)
+        var medias = annonce.media
         //els = { ...medias }
         for (let i = 0; i < medias.length; i++) {
           els[i] = medias[i];
           }
         console.log(els)
         // set the add type
-       
         if ((medias.length > 1)) {
-          setAddEl(<SliderAdd list={els} />)
+          addEl.current = <SliderAdd list={els} />
         } else {
-          setAddEl(<img src={medias[0].url_med} alt="annonce" className="img-fluid" />)
+          addEl.current = <img src={medias[0].url_med} alt="annonce" className="img-fluid" />
         }
-        console.log(image)
-        setImage(true)
-      // }, 5000); 
+        setIsWinner(isWinner)
+        console.log(isWinner)
+      // }, 3000); 
     } )()
-  }, [ref, annonce.media, image, medias]); 
-  
+  }, [isWinner]);
+ 
 
   return (
+    
     <div>
       <div className="card bg-transparent text-center border-0">
-        <ArrowLeft /> <p className="my-3" >ScanGift.me</p>
+        <ArrowLeft />
         <div className="card-header bg-transparent border-0">
-          <h3 className="title-s-1 mb-4">
-            { isWinner ? 'Felicitations !' : '' }
+          <h3 className="title-s-1 my-4">
+            { isWinner ? 'Felicitations !' : '' } {annonce.id_anncs}{" "}
           </h3>
         </div>
-        <div className="card-body mb-4 d-flex flex-column justify-content-center align-items-center">
-          <div className="scangif text-center">
+        <div className="card-body d-flex flex-column justify-content-center align-items-center">
+          <div className="scangif m-2 text-center">
             {/* <img src={imgUrl} alt="annonce" className="img-fluid" /> */}
-            {addEl}
+            {addEl.current}
           </div>
-        </div>  
-        <div className="card-footer text-center bg-transparent border-0">
+        </div> 
+        <div className="card-footer text-center bg-white">
         { isWinner ? '' : annonce.description }
             </div>
       </div>

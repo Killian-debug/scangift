@@ -1,7 +1,6 @@
 
 .scangif {
     width: 40%;
-    height: 40%;
     filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
 }
 
@@ -15,8 +14,8 @@
 
 @media screen and ( max-width : 450px ) {
     .scangif {
-        width: 80%;
-        margin-bottom: 1rem;
+        width: 65%;
+        margin-bottom: .5rem;
        
     }
 }
