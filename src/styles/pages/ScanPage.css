@@ -1,16 +1,16 @@
-@media only screen and ( max-width : 450px ) {
+@media screen and (min-width : 451px) and ( max-width : 820px)  {
     .qrReader {
-        width: 85% !important;
+        width: 65% !important;
         height: min-content;
     }
 }
-@media only screen and ( max-width : 820px ) {
+@media screen and ( max-width : 450px ) {
     .qrReader {
-        width: 50% !important;
+        width: 65% !important;
         height: fit-content;
     }
 }
 .qrReader {
-    width : 30%;
+    width : 40%;
     height: fit-content;
 }

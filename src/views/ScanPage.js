@@ -89,7 +89,7 @@ const ScanPage = () => {
                     <div className="card-footer bg-transparent border-0">
                         <div className="btn-go">
                             <div className="btn-circle-go">
-                                <p className='text-go' > {urlScanned} </p>
+                                <p className='text-go' > {urlScanned}  {Url_Valide(urlScanned)} </p>
                             </div>
                         </div>
                     </div>
