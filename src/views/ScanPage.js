@@ -44,12 +44,12 @@ const ScanPage = () => {
             setloading(true)
             setUrlScanned(result?.text);
             setloading(false)
-
-            if (Url_Valide(urlScanned)) {
-                window.open(urlScanned, '_blank', 'noopener,noreferrer') 
-            } else {
-                console.log('data scanned :' + urlScanned)
-            }
+window.open(urlScanned, '_blank', 'noopener,noreferrer')
+            // if (Url_Valide(urlScanned)) {
+                 
+            // } else {
+            //     console.log('data scanned :' + urlScanned)
+            // }
             setloading(false)
         }
         if (!!error) {
