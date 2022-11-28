@@ -10,7 +10,7 @@ import {FormUrl} from "../hooks/Env"; //URL du type form
 
 const ScanPage = () => {
 
-    const [urlScanned, setUrlScanned] = useState('No data');
+    const [urlScanned, setUrlScanned] = useState('');
     const [loading, setloading] = useState(false);
     const [title, setTitle] = useState('Cherchez un Qr Code');
     
