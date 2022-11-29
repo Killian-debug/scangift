@@ -13,8 +13,9 @@ const ScanPage = () => {
     const [urlScanned, setUrlScanned] = useState('');
     const [loading, setloading] = useState(false);
     const [title, setTitle] = useState('Cherchez un Qr Code');
-    const [redirectMsg, setRedirectMsg] = useState('');
+    //const [redirectMsg, setRedirectMsg] = useState('');
     const form = FormUrl
+    var redirectMsg = ""
 
     function Url_Valide(UrlTest) {
         
@@ -36,10 +37,17 @@ const ScanPage = () => {
         }
     }, [loading]);
 
+    const redirectToUrl = async () => {
+        redirectMsg = "Vous êtes redirigé vers : " + urlScanned
 
-    const handleErrorScan = (result, error) => {
-        
-        
+        setTimeout(() => {
+            // 👇️ directly change the active URL to navigate
+            window.location.href = urlScanned;
+          }, 3000);
+    }
+
+
+    const handleErrorScan = (result, error) =>  {
         if (!!result) {
             setloading(true)
             setUrlScanned(result?.text);
@@ -51,12 +59,7 @@ const ScanPage = () => {
             // } else {
             //     console.log('data scanned :' + urlScanned)
             // }
-            setloading(false)
-            setRedirectMsg("Vous êtes redirigé vers : " + urlScanned)
-            setTimeout(() => {
-                // 👇️ directly change the active URL to navigate
-                window.location.href = urlScanned;
-              }, 3000);
+           redirectToUrl()
         }
         if (!!error) {
             console.info(error);
@@ -95,7 +98,7 @@ const ScanPage = () => {
                     <div className="card-footer bg-transparent border-0">
                         <div className="btn-go">
                             <div className="btn-circle-go">
-                                <p className='text-go' > {redirectMsg}  {Url_Valide(urlScanned)} </p>
+                                <p className='text-go' > {redirectMsg} {urlScanned} {Url_Valide(urlScanned)} </p>
                             </div>
                         </div>
                     </div>
