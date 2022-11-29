@@ -54,10 +54,10 @@ const ScanPage = () => {
             // }
             setloading(false)
             redirectMsg = "Vous êtes redirigé vers : " + urlScanned
-            const timeout = setTimeout(() => {
+            setTimeout(() => {
                 // 👇️ directly change the active URL to navigate
                 window.location.href = urlScanned;
-              }, 1500);
+              }, 3000);
         }
         if (!!error) {
             console.info(error);
