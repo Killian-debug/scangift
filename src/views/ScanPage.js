@@ -15,6 +15,7 @@ const ScanPage = () => {
     const [title, setTitle] = useState('Cherchez un Qr Code');
     
     const form = FormUrl
+    var redirectMsg = ""
 
     function Url_Valide(UrlTest) {
         
@@ -44,13 +45,19 @@ const ScanPage = () => {
             setloading(true)
             setUrlScanned(result?.text);
             setloading(false)
-            window.open(urlScanned, '_self')
+            
+            //window.open(urlScanned, '_blank', 'noopener,noreferer')
             // if (Url_Valide(urlScanned)) {
                  
             // } else {
             //     console.log('data scanned :' + urlScanned)
             // }
             setloading(false)
+            redirectMsg = "Vous êtes redirigé vers : " + urlScanned
+            const timeout = setTimeout(() => {
+                // 👇️ directly change the active URL to navigate
+                window.location.href = urlScanned;
+              }, 1500);
         }
         if (!!error) {
             console.info(error);
@@ -89,7 +96,7 @@ const ScanPage = () => {
                     <div className="card-footer bg-transparent border-0">
                         <div className="btn-go">
                             <div className="btn-circle-go">
-                                <p className='text-go' > {urlScanned}  {Url_Valide(urlScanned)} </p>
+                                <p className='text-go' > {redirectMsg}  {Url_Valide(urlScanned)} </p>
                             </div>
                         </div>
                     </div>
