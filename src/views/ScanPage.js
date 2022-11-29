@@ -25,7 +25,7 @@ const ScanPage = () => {
         // } else{
         //   alert ("Mon URL n'est PAS valide");
         // }
-        return regexp.test(UrlTest);
+        return regexp.test(UrlTest.toString() );
       }
     
     useEffect(() => {
@@ -44,7 +44,7 @@ const ScanPage = () => {
             setloading(true)
             setUrlScanned(result?.text);
             setloading(false)
-            window.open(urlScanned, '_blank')
+            window.open(urlScanned, '_self')
             // if (Url_Valide(urlScanned)) {
                  
             // } else {
