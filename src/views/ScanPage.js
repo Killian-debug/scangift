@@ -44,7 +44,7 @@ const ScanPage = () => {
             setloading(true)
             setUrlScanned(result?.text);
             setloading(false)
-window.open(urlScanned, '_blank', 'noopener,noreferrer')
+            window.open(urlScanned, '_blank')
             // if (Url_Valide(urlScanned)) {
                  
             // } else {
