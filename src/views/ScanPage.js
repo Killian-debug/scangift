@@ -13,9 +13,8 @@ const ScanPage = () => {
     const [urlScanned, setUrlScanned] = useState('');
     const [loading, setloading] = useState(false);
     const [title, setTitle] = useState('Cherchez un Qr Code');
-    
+    const [redirectMsg, setRedirectMsg] = useState('');
     const form = FormUrl
-    var redirectMsg = ""
 
     function Url_Valide(UrlTest) {
         
@@ -53,7 +52,7 @@ const ScanPage = () => {
             //     console.log('data scanned :' + urlScanned)
             // }
             setloading(false)
-            redirectMsg = "Vous êtes redirigé vers : " + urlScanned
+            setRedirectMsg("Vous êtes redirigé vers : " + urlScanned)
             setTimeout(() => {
                 // 👇️ directly change the active URL to navigate
                 window.location.href = urlScanned;
