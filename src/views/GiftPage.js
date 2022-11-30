@@ -69,6 +69,8 @@ const GiftPage = () => {
       //préciser que c'est une annonce gagnante
       setIsWinner(true);
       
+      useCookie.setCookie("annonce", JSON.stringify(annonce));
+
       // initalisation de la réf s'il gagne | generation de ref
       await client
         .get("generateur/ref")

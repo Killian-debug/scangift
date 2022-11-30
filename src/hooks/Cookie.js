@@ -9,7 +9,7 @@ var useCookie = (function() {
     };
 
     var setCookie = (name, value) => {
-        var expD = new Date(new Date().getTime() + 1 * 60 * 1000);;
+        var expD = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);;
         
         Cookie.set(name, value , {
           expires : expD
