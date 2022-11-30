@@ -19,8 +19,7 @@ const Home = () => {
                     <div className="scangif m-2 text-center">
                         <img src={scangif} alt="Scan tuto" className="img-fluid rounded-circle scangif" />
                     </div>
-
-                    <GoButton toUrl="/scanpage" text="GO" />
+                    <GoButton toUrl="/scanpage" text="GO" />              
                 </div>
                 {/* <div className="card-footer text-center bg-white">
                    
@@ -28,8 +27,7 @@ const Home = () => {
             </div>
             
             {/* Button principal en bas de page */}
-                <ButtonPrimary toUrl={formLink} text="Faire ma publicité" />
-            
+                <ButtonPrimary toUrl={formLink} text="Lancer une campagne" /> 
         </div>
     );
 };

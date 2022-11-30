@@ -5,7 +5,7 @@ import HomeOld from "./views/Home.old.js";
 import GiftPage from "./views/GiftPage.js";
 import ScanPage from "./views/ScanPage.js";
 import Place from "./views/Place.js";
-
+import ControlledPopup from "./views/popup.js";
 
 const App = () => {
 
@@ -24,6 +24,10 @@ const App = () => {
               {" "}
             </Route>
             <Route path="/giftpage" element={<GiftPage />}>
+              {" "}
+            </Route>
+
+            <Route path="/popup" element={ <ControlledPopup/> }>
               {" "}
             </Route>
 
