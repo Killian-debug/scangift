@@ -18,7 +18,7 @@ const ControlledPopup = () => {
         <div className="modal">
          
         </div>
-        <p className="content" > Aller vers </p>
+        <p className="content" > Aller vers <a className="d-inline d-flex" href="https://google.com" target="_blank" rel="noreferrer" >https://google.com</a> </p>
           <div className="actions d-flex justify-content-end">
               <a href="https://google.com" className='text-right' target="_blank" rel='noreferrer'>
                 <button

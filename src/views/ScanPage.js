@@ -20,7 +20,6 @@ const ScanPage = () => {
 
   //const [redirectMsg, setRedirectMsg] = useState('');
   const form = FormUrl;
-  var redirectMsg = "";
 
   function Url_Valide(UrlTest) {
     var regexp =
@@ -99,8 +98,7 @@ const ScanPage = () => {
           <div className="btn-go">
             <div className="btn-circle-go">
               <p className="text-go">
-                {" "}
-                {redirectMsg} {urlScanned} {Url_Valide(urlScanned)}{" "}
+               {urlScanned} {Url_Valide(urlScanned)}
               </p>
             </div>
           </div>
@@ -112,7 +110,7 @@ const ScanPage = () => {
         <div className="modal">
          
         </div>
-        <p className="content" > Aller vers <a href={urlScanned} target="_blank" rel="noreferrer" >{urlScanned}</a>  </p>
+        <p className="content" > Aller vers <a className="d-inline d-flex" href={urlScanned} target="_blank" rel="noreferrer" >{urlScanned}</a>  </p>
           <div className="actions d-flex justify-content-end">
               <a href={urlScanned} className='text-right' target="_blank" rel='noreferrer'>
                 <button

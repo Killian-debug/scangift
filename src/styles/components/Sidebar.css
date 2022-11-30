@@ -13,8 +13,13 @@
   position: fixed;
   z-index : 10;
   right: 0;
-
+  background-color: #EFE5E5;
 }
+
+.topnav #myLinks a {
+  border-bottom: #000 2px solid;
+}
+
 .head {
   color: rgb(0, 0, 0);
   padding-top : 14px;
@@ -25,7 +30,7 @@
 /* Style navigation menu links */
 .topnav a {
   color: rgb(0, 0, 0);
-  padding: 14px 16px;
+  padding: 8px 16px;
   text-decoration: none;
   font-size: 17px;
   display: block;

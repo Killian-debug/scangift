@@ -27,7 +27,7 @@ const Home = () => {
             </div>
             
             {/* Button principal en bas de page */}
-                <ButtonPrimary toUrl={formLink} text="Lancer une campagne" /> 
+                <ButtonPrimary toUrl={formLink} text="Faire ma publicité" /> 
         </div>
     );
 };

@@ -12,7 +12,7 @@ const Place = () => {
     useEffect(() => {
         console.log('place :' + giftplace )
        
-    }, []);
+    }, [giftplace]);
     return (
         <div>
             <div className="card bg-transparent text-center border-0">
@@ -20,11 +20,11 @@ const Place = () => {
                     <h3 className='title-s-1 my-4' >Bienvenue à {giftplace}</h3>
                 </div>
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                    <div className="scangif m-4 text-center">
-                        <img src={placeimg} alt="place img" className="img-fluid" />
+                    <div className="scangif m-0 text-center">
+                        <img src={placeimg} alt="place img" style={{ width: '50%' }} className="img-fluid" />
                     </div>
 
-                    <GoButton toUrl="/scanpage" text="GO" />
+                    <GoButton toUrl="/scanpage" text="Scanner" />
                 </div>
                 {/* <div className="card-footer text-center bg-white">
                    
