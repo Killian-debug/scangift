@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/scangift/static/css/main.3f575f2b.css",
-    "main.js": "/scangift/static/js/main.e0838e23.js",
+    "main.css": "/scangift/static/css/main.eca064dd.css",
+    "main.js": "/scangift/static/js/main.9617ba68.js",
     "static/js/787.15445e2d.chunk.js": "/scangift/static/js/787.15445e2d.chunk.js",
     "static/media/qr-code-scanner-tuto.gif": "/scangift/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
     "static/media/fruitizz.jpg": "/scangift/static/media/fruitizz.c879c2cffd4a8f0a0703.jpg",
     "static/media/pub1.jpeg": "/scangift/static/media/pub1.6aa6a77dc11525384845.jpeg",
     "service-worker.js": "/scangift/service-worker.js",
     "index.html": "/scangift/index.html",
-    "main.3f575f2b.css.map": "/scangift/static/css/main.3f575f2b.css.map",
-    "main.e0838e23.js.map": "/scangift/static/js/main.e0838e23.js.map",
+    "main.eca064dd.css.map": "/scangift/static/css/main.eca064dd.css.map",
+    "main.9617ba68.js.map": "/scangift/static/js/main.9617ba68.js.map",
     "787.15445e2d.chunk.js.map": "/scangift/static/js/787.15445e2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f575f2b.css",
-    "static/js/main.e0838e23.js"
+    "static/css/main.eca064dd.css",
+    "static/js/main.9617ba68.js"
   ]
 }
