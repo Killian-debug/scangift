@@ -19,9 +19,9 @@ h1 {
   word-wrap: break-word;
 }
 
-/* #root {
-  z-index: 2;
-} */
+#root {
+  height: 100%;
+}
 .card-body {
   padding: 0;
 }
@@ -32,6 +32,10 @@ h1 {
   align-self: center;
   display: flex;
   flex-direction: column;
+}
+
+.l-none {
+  list-style: none;
 }
 
 .btn-principal {

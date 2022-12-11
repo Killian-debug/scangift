@@ -98,6 +98,7 @@ const GiftPage = () => {
       }
       return ''; // Legacy method for cross browser support
     };
+    
  var els = []
 const [medias, setMedias] = useState();
   // format d'affichage de l'annonce
