@@ -71,9 +71,7 @@ const ScanPage = () => {
   return (
     <div>
       <div className="card text-center bg-transparent border-0">
-        <ArrowLeft />
-
-        <div className="card-header bg-transparent border-0">
+         <div className="card-header bg-transparent border-0">
           <h3 className="title-s-1">{title}</h3>
         </div>
 
