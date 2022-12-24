@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import ArrowLeft from "../components/ArrowLeft";
 import client from "../hooks/Data.js";
 import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -24,12 +23,13 @@ const GiftPage = () => {
   const msg = "Visiter";
 
   const onDestClick = () => {
+    client.post("gagner", {
+      idAnncs : annonce.id_anncs,
+      idEvent : annonce.id_event,
+      ref : ref.ref, 
+    });
     console.log("CTA clicked");
-    // client.post("gagner", {
-    //   idAnncs : annonce.id_anncs,
-    //   idEvent : annonce.id_event,
-    //   ref : ref.ref, 
-    // });
+    
   };
 
   useEffect(() => {
@@ -116,7 +116,7 @@ const [medias, setMedias] = useState();
         if ((medias.length > 1)) {
           setAddEl(<SliderAdd list={els} />)
         } else {
-          setAddEl(<img src={medias[0].url_med} alt="annonce" className="img-fluid" />)
+          setAddEl(<img src={process.env.REACT_APP_API_BASE_URL+'/'+medias[0].url_med} alt="annonce" className="img-fluid" />)
         }
         console.log(image)
         setImage(true)
@@ -128,7 +128,7 @@ const [medias, setMedias] = useState();
   return (
     <div>
       <div className="card bg-transparent text-center border-0">
-        <ArrowLeft /> <p className="my-3" >ScanGift.me</p>
+        
         <div className="card-header bg-transparent border-0">
           <h3 className="title-s-1 mb-4">
             { isWinner ? 'Felicitations !' : '' }

@@ -2,9 +2,26 @@ import React, { useCallback, useContext, useMemo, useState } from "react";
 import PrimaryButton from "../../components/Buttons";
 import Api from "../../hooks/Data";
 import AdminNav from "../../components/Admin/AdminNav";
+// import SelectField from "../../components/selectField";
 import axios from "axios";
 
 const FormContext = React.createContext({});
+
+const emptyObj = (cfamFwdDtls) => {
+  for (var key in cfamFwdDtls) {
+  if (typeof cfamFwdDtls[key] == "string") {
+      cfamFwdDtls[key] = '';
+  } else if (typeof cfamFwdDtls[key] == "number") {
+    cfamFwdDtls[key] = null;
+  } else if (Array.isArray(cfamFwdDtls[key])) {
+      cfamFwdDtls[key] = [];
+   }
+  // else {
+  //     delete cfamFwdDtls[key];
+  // }
+}
+}
+
 
 function urlencodeFormData(fd){
   var params = new URLSearchParams();
@@ -20,9 +37,18 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
     setData( d => ({ ...d, [name] : value }));
   }, []);
 
+  const resetToDefault = useCallback(function (e) {
+    emptyObj(value)
+    console.log(value)
+    setData(value)
+   
+    e.target.reset()
+
+  }, []);
+
   const value = useMemo(
     function () {
-      return { ...data, handleChange };
+      return { ...data, handleChange};
     },
     [data, handleChange]
   );
@@ -31,20 +57,24 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
     function (e) {
       e.preventDefault();
       onSubmit(value);
-      console.log(value)
+      emptyObj(value)
+      setData(value)
+
     },
     [onSubmit, value]
   );
 
   return (
     <FormContext.Provider value={value}>
-      <form onSubmit={handleSubmit}>{children}</form>
-      {JSON.stringify(value)}
+      <form onReset={(e) => {resetToDefault(e)}} onSubmit={handleSubmit}>{children}</form>
+      <p className="text-break" >{JSON.stringify(value)}</p>
     </FormContext.Provider>
   );
 };
 
-const InputDef = ({ name, label, type, helpText }) => {
+
+
+const InputDef = ({ name, label, type, helpText, min, max }) => {
   const data = useContext(FormContext);
   const inputChange = useCallback(
     function (e) {
@@ -58,6 +88,8 @@ const InputDef = ({ name, label, type, helpText }) => {
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <input
+        min={min}
+        max={max}
         type={type ? type : "text"}
         className="form-control"
         name={name}
@@ -73,10 +105,17 @@ const InputDef = ({ name, label, type, helpText }) => {
   );
 };
 
+// const fieldChange = (e) => {
+//   const data = useContext(FormContext);
+//   console.log('change')
+//   data.handleChange(e.target.name, e.target.value);
+  
+// };
+
 const AddAnncs = () => {
   const Objectifs = ["Abonnee", "Visite", "Message"];
-  const [selectedRadio, setSelectedRadio] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
+  const typeAnncs = ["Gagnante", "Publicité"];
+  const [selectedTypeAnncs, setSelectedTypeAnncs] = useState('');
   const [joinedFile, setJoinedFile] = useState(null);
 
   const onFileChange = (e) => {
@@ -84,43 +123,43 @@ const AddAnncs = () => {
     console.log("file change")
   };
 
+  const resetToDefault = useCallback(function (value) {
+    emptyObj(value)
+  }, []);
+
   const handleSubmit = useCallback(function (value) {
      
      const formData = new FormData();
      for ( var key in value ) {
       formData.append(key, value[key]);
     }
-    // console.log(formData)
-     
-
-    console.log(joinedFile);
-
-      // Create an object of formData 
-      const fileData = new FormData(); 
-     
-      // Update the formData object 
-      fileData.append( 
-        "myFile", 
-        joinedFile, 
-        joinedFile.name
+   
+  // Update the formData object 
+      formData.append( 
+        "joinedFile", 
+        joinedFile,
       ); 
      
-      // Details of the uploaded file 
-      console.log(joinedFile.file); 
-     
-      // Request made to the backend api 
-      // Send formData object to my php file for save in folder
-      axios.post("http://localhost:3000/src/views/account/imgupload.php", fileData); 
+  // console.log(formData)
+    console.log("coucou");
+    
+    // Request made to the backend api 
+    // Send formData object to my nodejs server for save in folder
 
-    // Api.post("/annonce",
-    //   urlencodeFormData(formData)
-    // ).then((res)=>{
-    //   console.log(res)
-    // })
-    // .catch((err)=>{
-    //   console.error(err)
-    // })
+    Api.post("/annonce",
+      formData
+    ).then((res)=>{
+      console.log(res)
+      alert(res)
+    })
+    .catch((err)=>{
+      console.error(err)
+      alert(err)
+    })
+
+    setJoinedFile(null)
   }, []);
+
 
   return (
     <div className="container-fluid p-5">
@@ -130,15 +169,18 @@ const AddAnncs = () => {
         <div className="col-md-6">
         <div className="form-group">
               <label htmlFor="image">Affiche</label>
-              <input type="file" className="form-control-file" name="image" accept="png,jpg,jpeg"  id="image" placeholder="" aria-describedby="fileHelpId" onChange={onFileChange} />
+              <input type="file" className="form-control-file" name="joinedFile" accept="png,jpg,jpeg"  id="file" placeholder="" aria-describedby="fileHelpId" onChange={onFileChange} />
               <small id="fileHelpId" className="form-text text-muted">Parcourir vos dossiers</small>
           </div>
           <FormWithContext
-            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'3', duree:3, limite:0, id_anncrs:1, id_event:1 }}
+           
+            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'0', id_anncrs:'1', id_event:'1' }}
             onSubmit={handleSubmit}
           >
-            <InputDef name="url" label="Destination" />
+            <InputDef name="url_des" type="url" label="Destination" />
             <InputDef name="limite" type="number" label="Limite" helpText="limite d'affichage" />
+
+            <InputDef name="type_anncs" type="number" label="Type d'annonce" helpText="1=Gagnant | 2=non gagnant" max="2" min="1" />
 
             {/* <InputDef name="naissance" label="Date de fin" type="date" /> */}
             {/* <ul className="d-flex l-none">
@@ -185,13 +227,26 @@ const AddAnncs = () => {
               </select>
             </div> */}
 
+            {/* <div className="form-group">
+              <label htmlFor="type_anncs">Type d'annonce</label>
+              <select className="form-control" name="type_anncs" id="type_anncs">
+                {typeAnncs.map((tAnn,index) => (
+                  <option
+                    key={index}
+                    value={index+1}
+                    onChange={(e) => setSelectedTypeAnncs(e.target.id)}
+                  > {tAnn} </option>
+                ))}
+              </select>
+            </div> */}
+
             <div className="form-group">
-              <label htmlFor="description">Message</label>
-              <textarea className="form-control" name="description" id="description" rows="3"></textarea>
+              <InputDef name="description" type="text" label="Message" helpText="message appel à l'action" />
+              {/* <textarea className="form-control" name="description" id="description" rows="3" onChange={(e)=> fieldChange(e)} ></textarea> */}
             </div>
             
 
-            <PrimaryButton>Enregistrer</PrimaryButton>
+            <PrimaryButton  >Enregistrer</PrimaryButton>
             <button type="reset" className="btn btn-danger ml-2">Annuler</button>
           </FormWithContext>
           

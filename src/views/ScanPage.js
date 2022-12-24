@@ -60,7 +60,7 @@ const ScanPage = () => {
       // } else {
       //     console.log('data scanned :' + urlScanned)
       // }
-      setOpen(o => !o)
+      setOpen(true)
     }
     if (!!error) {
       console.info(error);
