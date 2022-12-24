@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/scangift/static/css/main.608e8d4c.css",
-    "main.js": "/scangift/static/js/main.30cd02d5.js",
+    "main.js": "/scangift/static/js/main.984b9e0f.js",
     "static/js/787.15445e2d.chunk.js": "/scangift/static/js/787.15445e2d.chunk.js",
     "static/media/qr-code-scanner-tuto.gif": "/scangift/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
     "static/media/pub1.jpeg": "/scangift/static/media/pub1.6aa6a77dc11525384845.jpeg",
     "service-worker.js": "/scangift/service-worker.js",
     "index.html": "/scangift/index.html",
     "main.608e8d4c.css.map": "/scangift/static/css/main.608e8d4c.css.map",
-    "main.30cd02d5.js.map": "/scangift/static/js/main.30cd02d5.js.map",
+    "main.984b9e0f.js.map": "/scangift/static/js/main.984b9e0f.js.map",
     "787.15445e2d.chunk.js.map": "/scangift/static/js/787.15445e2d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.608e8d4c.css",
-    "static/js/main.30cd02d5.js"
+    "static/js/main.984b9e0f.js"
   ]
 }
