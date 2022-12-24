@@ -21,7 +21,7 @@ const ScanPage = () => {
   //const [redirectMsg, setRedirectMsg] = useState('');
   const form = FormUrl;
 
-  function Url_Valide(UrlTest) {
+  const Url_Valide = (UrlTest) => {
     var regexp =
       /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
 
@@ -30,7 +30,8 @@ const ScanPage = () => {
     // } else{
     //   alert ("Mon URL n'est PAS valide");
     // }
-    return regexp.test(UrlTest.toString());
+    let res = regexp.test(UrlTest.toString())
+    return res.toString() ;
   }
 
   useEffect(() => {
@@ -55,12 +56,12 @@ const ScanPage = () => {
       setloading(false);
 
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      // if (Url_Valide(urlScanned)) {
-
-      // } else {
-      //     console.log('data scanned :' + urlScanned)
-      // }
-      setOpen(true)
+      if (Url_Valide(urlScanned) == 'true' ) {
+        setOpen(true)
+      } else {
+          console.log('data scanned :' + urlScanned)
+      }
+      
     }
     if (!!error) {
       console.info(error);
@@ -87,7 +88,7 @@ const ScanPage = () => {
           />
         </div>
         <div className="loader">
-          <ClipLoader
+        <ClipLoader
             loading={loading}
             size={70}
             aria-label="Scanne en cours"
@@ -98,7 +99,7 @@ const ScanPage = () => {
           <div className="btn-go">
             <div className="btn-circle-go">
               <p className="text-go">
-               {urlScanned} {Url_Valide(urlScanned)}
+               {urlScanned} 
               </p>
             </div>
           </div>
