@@ -129,7 +129,7 @@ const [medias, setMedias] = useState();
         if ((medias.length > 1)) {
           setAddEl(<SliderAdd list={els} />)
         } else {
-          setAddEl(<img src={medias[0].url_med} alt="annonce" className="img-fluid" />)
+          setAddEl(<img src={process.env.REACT_APP_API_BASE_URL+'/'+medias[0].url_med} alt="annonce" className="img-fluid" />)
         }
         console.log(image)
         setImage(true)

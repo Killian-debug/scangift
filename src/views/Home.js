@@ -13,7 +13,7 @@ const Home = () => {
         <div>
             <div className="card bg-transparent text-center border-0">
                 <div className="card-header bg-transparent border-0">
-                    <h3 className='title-s-1 my-2' >Scanner pour gagner !</h3> 
+                    <h3 className='title-s-1 mt-2' >Scanner pour gagner !</h3> 
                 </div>
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                     <div className="scangif m-2 text-center">
@@ -26,8 +26,8 @@ const Home = () => {
                 </div> */}
             </div>
             
-            {/* Button principal en bas de page */}
-                <ButtonPrimary toUrl={formLink} text="Faire ma publicité" /> 
+            {/* Button principal en bas de page 
+                <ButtonPrimary toUrl={formLink} text="Faire ma publicité" /> */}
         </div>
     );
 };

@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar.js";
 import AddAnncs from "./views/account/AddAnncs.js";
 import AddAdvsr from "./views/account/AddAdvsr.js";
 import AddAnncsNew from "./views/account/AddAnncs.new.js";
+import Footer from "./components/Footer.js";
 
 const App = () => {
 
@@ -38,7 +39,7 @@ const App = () => {
               {" "}
             </Route>
           </Routes>
-      
+      <Footer />
     </BrowserRouter>
   );
 };

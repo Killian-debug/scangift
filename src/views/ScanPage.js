@@ -12,7 +12,7 @@ import { FormUrl } from "../hooks/Env"; //URL du type form
 
 const ScanPage = () => {
   const [urlScanned, setUrlScanned] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
   const [title, setTitle] = useState("Cherchez un Qr Code");
 
   const [open, setOpen] = useState(false);
@@ -22,25 +22,24 @@ const ScanPage = () => {
   const form = FormUrl;
 
   const Url_Valide = (UrlTest) => {
-    var regexp =
-      /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+    var regexp = /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g;
 
     // if (regexp.test(UrlTest)){
     //   alert ('Mon URL est valide');
     // } else{
     //   alert ("Mon URL n'est PAS valide");
     // }
-    let res = regexp.test(UrlTest.toString())
-    return res.toString() ;
+    var res = regexp.test(UrlTest.toString())
+    return res ;
   }
 
   useEffect(() => {
-    if (loading) {
-      setTitle("Scan en cours...");
-    } else {
-      setTitle("Cherchez un Qr Code");
-    }
+      if (!loading) {
+        setTitle("Cherchez un Qr Code");
+      }
   }, [loading]);
+
+  
 
   // const redirectToUrl = () => {
   //   setTimeout(() => {
@@ -49,19 +48,21 @@ const ScanPage = () => {
   //   }, 3000);
   // };
 
+
   const handleErrorScan = (result, error) => {
     if (!!result) {
-      setloading(true);
-      setUrlScanned(result?.text);
-      setloading(false);
+      setTitle("Scan en cours...")
 
+      setUrlScanned(result?.text);
+      
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      // if (Url_Valide(urlScanned) == "true" ) {
-      //   setOpen(true)
-      // } else {
-      //     console.log('data scanned :' + urlScanned)
-      // }
-      setOpen(true)
+      if (Url_Valide( urlScanned.toString() ) == true ) {
+        setOpen(true)
+      } else {
+          console.log('data scanned :' + urlScanned)
+      }
+      setloading(false);
+      // setOpen(true)
     }
     if (!!error) {
       console.info(error);
@@ -88,7 +89,7 @@ const ScanPage = () => {
         <div className="loader">
         <ClipLoader
             loading={loading}
-            size={70}
+            size={80}
             aria-label="Scanne en cours"
           />
         </div>
@@ -127,7 +128,7 @@ const ScanPage = () => {
       </div>
 
       {/* Button principal en bas de page */}
-      <ButtonPrimary toUrl={form} text="Faire ma publicité" />
+      {/* <ButtonPrimary toUrl={form} text="Faire ma publicité" /> */}
     </div>
   );
 };
