@@ -40,7 +40,7 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
   const resetToDefault = useCallback(function (e) {
     emptyObj(value)
     console.log(value)
-    setData(defaultValue)
+    setData(value)
    
     e.target.reset()
 
@@ -57,8 +57,8 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
     function (e) {
       e.preventDefault();
       onSubmit(value);
-      setData(defaultValue)
-      e.target.reset()
+      emptyObj(value)
+      setData(value)
 
     },
     [onSubmit, value]
@@ -73,26 +73,6 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
 };
 
 
-
-const FileField = ({name, label, helpText }) => {
-
-  const data = useContext(FormContext);
-  const onFileChange = useCallback(
-    function (e) {
-      data.handleChange(e.target.name, e.target.files[0]);
-      console.log(e.target.files[0])
-    },
-    [data]
-  );
-
-  return (
-    <div className="form-group">
-              <label htmlFor="image">{label}</label>
-              <input type="file" className="form-control-file" name={name} accept="png,jpg,jpeg"  id="file" aria-describedby="fileHelpId" onChange={onFileChange} />
-              <small id="fileHelpId" className="form-text text-muted">{helpText}</small>
-          </div>
-  );
-};
 
 const InputDef = ({ name, label, type, helpText, min, max }) => {
   const data = useContext(FormContext);
@@ -132,7 +112,8 @@ const InputDef = ({ name, label, type, helpText, min, max }) => {
   
 // };
 
-const AddAnncs = () => {
+const AddAnncsNew = () => {
+  const [defaultValue, setDefaultValue] = useState({ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'0', id_anncrs:'1', id_event:'1' });
   const Objectifs = ["Abonnee", "Visite", "Message"];
   const typeAnncs = ["Gagnante", "Publicité"];
   const [selectedTypeAnncs, setSelectedTypeAnncs] = useState('');
@@ -140,7 +121,7 @@ const AddAnncs = () => {
 
   const onFileChange = (e) => {
     setJoinedFile(e.target.files[0])
-    console.log(e.target.files[0])
+    console.log("file change")
   };
 
   const resetToDefault = useCallback(function (value) {
@@ -155,18 +136,13 @@ const AddAnncs = () => {
     }
    
   // Update the formData object 
-      // formData.append( 
-      //   "joinedFile", 
-      //   joinedFile,
-      // );
+      formData.append( 
+        "joinedFile", 
+        joinedFile,
+      ); 
      
-     
-      for (var pair of formData.entries()) {
-        console.log(pair[0]+ ' : ' + pair[1]);
-      }
-
-
-     console.log(joinedFile);
+  // console.log(formData)
+    console.log("coucou");
     
     // Request made to the backend api 
     // Send formData object to my nodejs server for save in folder
@@ -181,6 +157,7 @@ const AddAnncs = () => {
       console.error(err)
       alert(err)
     })
+
     setJoinedFile(null)
   }, []);
 
@@ -191,18 +168,16 @@ const AddAnncs = () => {
       <h2 className="d-flex justify-content-center">Ajouter une annonce</h2>
       <div className="d-flex justify-content-center ">
         <div className="col-md-6">
-       
-          <FormWithContext
-           
-            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'0', id_anncrs:'1', id_event:'1', joinedFile:{} }}
-            onSubmit={handleSubmit}
-          >
-            <FileField name="joinedFile" label="Affiche" helpText="Parcourir vos dossiers" />
-             {/* <div className="form-group">
+        <div className="form-group">
               <label htmlFor="image">Affiche</label>
               <input type="file" className="form-control-file" name="joinedFile" accept="png,jpg,jpeg"  id="file" placeholder="" aria-describedby="fileHelpId" onChange={onFileChange} />
               <small id="fileHelpId" className="form-text text-muted">Parcourir vos dossiers</small>
-          </div> */}
+          </div>
+          <FormWithContext
+           
+            defaultValue={defaultValue}
+            onSubmit={handleSubmit}
+          >
             <InputDef name="url_des" type="url" label="Destination" />
             <InputDef name="limite" type="number" label="Limite" helpText="limite d'affichage" />
 
@@ -282,4 +257,4 @@ const AddAnncs = () => {
   );
 };
 
-export default AddAnncs;
+export default AddAnncsNew;

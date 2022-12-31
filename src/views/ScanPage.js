@@ -56,12 +56,12 @@ const ScanPage = () => {
       setloading(false);
 
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if (Url_Valide(urlScanned) == 'true' ) {
-        setOpen(true)
-      } else {
-          console.log('data scanned :' + urlScanned)
-      }
-      
+      // if (Url_Valide(urlScanned) == "true" ) {
+      //   setOpen(true)
+      // } else {
+      //     console.log('data scanned :' + urlScanned)
+      // }
+      setOpen(true)
     }
     if (!!error) {
       console.info(error);

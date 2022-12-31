@@ -7,6 +7,7 @@ import Place from "./views/Place.js";
 import Sidebar from "./components/Sidebar.js";
 import AddAnncs from "./views/account/AddAnncs.js";
 import AddAdvsr from "./views/account/AddAdvsr.js";
+import AddAnncsNew from "./views/account/AddAnncs.new.js";
 
 const App = () => {
 
@@ -25,9 +26,10 @@ const App = () => {
               {" "}
             </Route>
 
-            <Route path="/giftpage/:giftplace" exact element={ <Place /> } />
+            <Route path="/:giftplace" exact element={ <Place /> } />
 
             <Route path="/account/addanncs" exact element={ <AddAnncs /> } />
+            <Route path="/account/addanncsnew" exact element={ <AddAnncsNew /> } />
 
             <Route path="/account/addadvsr" exact element={ <AddAdvsr /> } />
 
