@@ -172,11 +172,11 @@ const AddAnncs = () => {
       formData
     ).then((res)=>{
       //console.log(res)
-      alert(res.succes)
+      alert(res.msg)
     })
     .catch((err)=>{
       console.error(err)
-      alert('Echec de l\'ajout')
+      alert('Echec de l\'ajout ! Veuillez vérifier tout les champs et réessayer !')
     })
     setJoinedFile(null)
   }, []);
