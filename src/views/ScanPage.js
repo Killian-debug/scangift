@@ -56,7 +56,6 @@ const ScanPage = () => {
       // setOpen(true)
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
       if ( Url_Valide(result?.text) === true ) setOpen(true)
-
    
     }
     if (!!error) {
@@ -104,7 +103,7 @@ const ScanPage = () => {
         <div className="modal">
          
         </div>
-        <p className="content" > Aller vers <a className="d-inline d-flex" href={urlScanned} target="_blank" rel="noreferrer" >{urlScanned}</a>  </p>
+        <p className="content" > Je tente ma chance ! </p>
           <div className="actions d-flex justify-content-end">
               <a href={urlScanned} className='text-right' target="_blank" rel='noreferrer'>
                 <button

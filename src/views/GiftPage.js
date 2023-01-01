@@ -131,11 +131,11 @@ const [medias, setMedias] = useState();
       <div className="card bg-transparent text-center border-0">
         
         <div className="card-header bg-transparent border-0">
-          <h3 className="title-s-1 mb-4">
+          <h3 className="title-s-1 mb-1">
             { isWinner ? 'Felicitations !' : '' }
           </h3>
         </div>
-        <div className="card-body mb-4 d-flex flex-column justify-content-center align-items-center">
+        <div className="card-body mb-1 d-flex flex-column justify-content-center align-items-center">
           <div className="scangif text-center">
             {/* <img src={imgUrl} alt="annonce" className="img-fluid" /> */}
             {addEl}
