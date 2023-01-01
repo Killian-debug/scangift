@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.673101c6.css",
-    "main.js": "/static/js/main.3e47a84c.js",
-    "static/js/787.15445e2d.chunk.js": "/static/js/787.15445e2d.chunk.js",
-    "static/media/qr-code-scanner-tuto.gif": "/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
-    "static/media/pub1.jpeg": "/static/media/pub1.6aa6a77dc11525384845.jpeg",
-    "service-worker.js": "/service-worker.js",
-    "static/media/logo192.png": "/static/media/logo192.2974dee26507e3bf5aba.png",
-    "index.html": "/index.html",
-    "main.673101c6.css.map": "/static/css/main.673101c6.css.map",
-    "main.3e47a84c.js.map": "/static/js/main.3e47a84c.js.map",
-    "787.15445e2d.chunk.js.map": "/static/js/787.15445e2d.chunk.js.map"
+    "main.css": "/killian.debug.github.io/scangift/static/css/main.673101c6.css",
+    "main.js": "/killian.debug.github.io/scangift/static/js/main.dce308fa.js",
+    "static/js/787.15445e2d.chunk.js": "/killian.debug.github.io/scangift/static/js/787.15445e2d.chunk.js",
+    "static/media/qr-code-scanner-tuto.gif": "/killian.debug.github.io/scangift/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
+    "static/media/pub1.jpeg": "/killian.debug.github.io/scangift/static/media/pub1.6aa6a77dc11525384845.jpeg",
+    "service-worker.js": "/killian.debug.github.io/scangift/service-worker.js",
+    "static/media/logo192.png": "/killian.debug.github.io/scangift/static/media/logo192.2974dee26507e3bf5aba.png",
+    "index.html": "/killian.debug.github.io/scangift/index.html",
+    "main.673101c6.css.map": "/killian.debug.github.io/scangift/static/css/main.673101c6.css.map",
+    "main.dce308fa.js.map": "/killian.debug.github.io/scangift/static/js/main.dce308fa.js.map",
+    "787.15445e2d.chunk.js.map": "/killian.debug.github.io/scangift/static/js/787.15445e2d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.673101c6.css",
-    "static/js/main.3e47a84c.js"
+    "static/js/main.dce308fa.js"
   ]
 }
