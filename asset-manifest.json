@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/scangift/static/css/main.b3a2098b.css",
-    "main.js": "/scangift/static/js/main.78f084d5.js",
-    "static/js/787.15445e2d.chunk.js": "/scangift/static/js/787.15445e2d.chunk.js",
-    "static/media/qr-code-scanner-tuto.gif": "/scangift/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
-    "static/media/pub1.jpeg": "/scangift/static/media/pub1.6aa6a77dc11525384845.jpeg",
-    "service-worker.js": "/scangift/service-worker.js",
-    "static/media/logo192.png": "/scangift/static/media/logo192.2974dee26507e3bf5aba.png",
-    "index.html": "/scangift/index.html",
-    "main.b3a2098b.css.map": "/scangift/static/css/main.b3a2098b.css.map",
-    "main.78f084d5.js.map": "/scangift/static/js/main.78f084d5.js.map",
-    "787.15445e2d.chunk.js.map": "/scangift/static/js/787.15445e2d.chunk.js.map"
+    "main.css": "/static/css/main.673101c6.css",
+    "main.js": "/static/js/main.3e47a84c.js",
+    "static/js/787.15445e2d.chunk.js": "/static/js/787.15445e2d.chunk.js",
+    "static/media/qr-code-scanner-tuto.gif": "/static/media/qr-code-scanner-tuto.0066f8c65af246c4f4fd.gif",
+    "static/media/pub1.jpeg": "/static/media/pub1.6aa6a77dc11525384845.jpeg",
+    "service-worker.js": "/service-worker.js",
+    "static/media/logo192.png": "/static/media/logo192.2974dee26507e3bf5aba.png",
+    "index.html": "/index.html",
+    "main.673101c6.css.map": "/static/css/main.673101c6.css.map",
+    "main.3e47a84c.js.map": "/static/js/main.3e47a84c.js.map",
+    "787.15445e2d.chunk.js.map": "/static/js/787.15445e2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3a2098b.css",
-    "static/js/main.78f084d5.js"
+    "static/css/main.673101c6.css",
+    "static/js/main.3e47a84c.js"
   ]
 }
