@@ -29,7 +29,7 @@ const ScanPage = () => {
     // } else{
     //   alert ("Mon URL n'est PAS valide");
     // }
-    var res = regexp.test(UrlTest.toString())
+    var res = regexp.test(UrlTest)
     return res ;
   }
 
