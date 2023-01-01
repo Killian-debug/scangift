@@ -111,7 +111,7 @@ const [medias, setMedias] = useState();
           els[i] = medias[i];
           }
 
-        console.log(els)
+        // console.log(els)
         
         // set the media type
         if ((medias.length > 1)) {

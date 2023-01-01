@@ -12,9 +12,9 @@ const ControlledPopup = () => {
         Controlled Popup
       </button>
       <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-          <a className="close" href='google.com' onClick={closeModal}>
+          <span className="close" onClick={closeModal}>
             &times;
-          </a>
+          </span>
         <div className="modal">
          
         </div>

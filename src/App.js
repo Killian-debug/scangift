@@ -9,6 +9,8 @@ import AddAnncs from "./views/account/AddAnncs.js";
 import AddAdvsr from "./views/account/AddAdvsr.js";
 import AddAnncsNew from "./views/account/AddAnncs.new.js";
 import Footer from "./components/Footer.js";
+import Popup from "reactjs-popup";
+import ControlledPopup from "./views/popup.js";
 
 const App = () => {
 
@@ -33,6 +35,8 @@ const App = () => {
             <Route path="/account/addanncsnew" exact element={ <AddAnncsNew /> } />
 
             <Route path="/account/addadvsr" exact element={ <AddAdvsr /> } />
+           
+            <Route path="/popup" exact element={ <ControlledPopup/> } />
 
             {/* Cela fonctionne si le chemin ne correspond à aucune option déjà présente */}
             <Route path="*" element={<Home />}>

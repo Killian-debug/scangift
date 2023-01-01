@@ -25,3 +25,7 @@
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
   }
+
+  .close {
+    cursor: pointer;
+  }

@@ -11,7 +11,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const ScanPage = () => {
   const [urlScanned, setUrlScanned] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("Cherchez un Qr Code");
 
   const [open, setOpen] = useState(false);
@@ -51,18 +51,17 @@ const ScanPage = () => {
       setTitle("Scan en cours...")
 
       setUrlScanned(result?.text);
-      let url = Url_Valide( urlScanned )
+      
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
       // if (url === true ) {
       //   setOpen(true)
       // } else {
       //     console.log('data scanned :' + urlScanned)
       // }
-      setloading(false);
+      setLoading(false);
       setOpen(true)
     }
     if (!!error) {
-      
       console.error(error);
     }
   };
@@ -77,7 +76,7 @@ const ScanPage = () => {
           {/* <div id="reader" width="50%" ></div> */}
           <QrReader
             // containerStyle={readerStyle}
-            scanDelay={300}
+            scanDelay={500}
             onResult={handleErrorScan}
             className="qrReader"
             constraints={{ facingMode: "environment" }}
@@ -101,9 +100,9 @@ const ScanPage = () => {
           </div>
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-          <a className="close" href='google.com' onClick={closeModal}>
+          <span className="close" type='button' onClick={closeModal}>
             &times;
-          </a>
+          </span>
         <div className="modal">
          
         </div>
