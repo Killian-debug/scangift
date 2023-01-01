@@ -110,9 +110,10 @@ const [medias, setMedias] = useState();
         for (let i = 0; i < medias.length; i++) {
           els[i] = medias[i];
           }
+
         console.log(els)
-        // set the add type
-       
+        
+        // set the media type
         if ((medias.length > 1)) {
           setAddEl(<SliderAdd list={els} />)
         } else {

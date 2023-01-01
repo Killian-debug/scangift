@@ -54,9 +54,9 @@ const ScanPage = () => {
       setTitle("Scan en cours...")
 
       setUrlScanned(result?.text);
-      
+      let url = Url_Valide( urlScanned )
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if (Url_Valide( urlScanned.toString() ) == true ) {
+      if (url == true ) {
         setOpen(true)
       } else {
           console.log('data scanned :' + urlScanned)
@@ -65,7 +65,7 @@ const ScanPage = () => {
       // setOpen(true)
     }
     if (!!error) {
-      console.info(error);
+      console.error(error);
     }
   };
 
