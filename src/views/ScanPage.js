@@ -62,7 +62,7 @@ const ScanPage = () => {
       setOpen(true)
     }
     if (!!error) {
-      alert("Echec du Scan")
+      
       console.error(error);
     }
   };
