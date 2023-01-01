@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   const NavActions = ({path}) => {
 
-    if (path === '/' || path === '/scanpage' ) {
+    if (path === '/' ) {
       return (
         <a className="icon py-2 px-2 " href="https://wa.me/22940538164"
            
