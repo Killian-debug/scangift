@@ -51,15 +51,13 @@ const ScanPage = () => {
       setTitle("Scan en cours...")
 
       setUrlScanned(result?.text);
-      
-      //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if ( Url_Valide(result?.text) === true ) {
-        setOpen(true)
-      } else {
-          console.log('data scanned :' + urlScanned)
-      }
       setLoading(false);
+      
       // setOpen(true)
+      //window.open(urlScanned, '_blank', 'noopener,noreferer')
+      if ( Url_Valide(result?.text) === true ) setOpen(true)
+
+   
     }
     if (!!error) {
       console.error(error);
