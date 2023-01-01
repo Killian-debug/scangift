@@ -41,9 +41,7 @@ const Place = () => {
     if(giftplace && giftplace != "" ){
         setMsgToPlace( "Bienvenue à " + giftplace.replace(/-/g,' ' ))
         console.log('place :' + giftplace )
-    }
-     
-     
+    }     
   }, [giftplace, msgToPlace]);
 
   useEffect(() => {
