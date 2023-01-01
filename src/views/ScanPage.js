@@ -53,15 +53,16 @@ const ScanPage = () => {
       setUrlScanned(result?.text);
       let url = Url_Valide( urlScanned )
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if (url === true ) {
-        setOpen(true)
-      } else {
-          console.log('data scanned :' + urlScanned)
-      }
+      // if (url === true ) {
+      //   setOpen(true)
+      // } else {
+      //     console.log('data scanned :' + urlScanned)
+      // }
       setloading(false);
-      // setOpen(true)
+      setOpen(true)
     }
     if (!!error) {
+      alert("Echec du Scan")
       console.error(error);
     }
   };

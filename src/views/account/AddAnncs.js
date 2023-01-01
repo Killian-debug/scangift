@@ -39,7 +39,7 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
 
   const resetToDefault = useCallback(function (e) {
     emptyObj(value)
-    console.log(value)
+    //console.log(value)
     setData(defaultValue)
    
     e.target.reset()
@@ -67,7 +67,7 @@ const FormWithContext = ({ defaultValue, onSubmit, children }) => {
   return (
     <FormContext.Provider value={value}>
       <form onReset={(e) => {resetToDefault(e)}} onSubmit={handleSubmit}>{children}</form>
-      <p className="text-break" >{JSON.stringify(value)}</p>
+      {/* <p className="text-break" >{JSON.stringify(value)}</p> */}
     </FormContext.Provider>
   );
 };
@@ -80,7 +80,7 @@ const FileField = ({name, label, helpText }) => {
   const onFileChange = useCallback(
     function (e) {
       data.handleChange(e.target.name, e.target.files[0]);
-      console.log(e.target.files[0])
+     // console.log(e.target.files[0])
     },
     [data]
   );
@@ -98,7 +98,6 @@ const InputDef = ({ name, label, type, helpText, min, max }) => {
   const data = useContext(FormContext);
   const inputChange = useCallback(
     function (e) {
-      console.log('change')
       data.handleChange(e.target.name, e.target.value);
       
     },
@@ -140,7 +139,7 @@ const AddAnncs = () => {
 
   const onFileChange = (e) => {
     setJoinedFile(e.target.files[0])
-    console.log(e.target.files[0])
+   // console.log(e.target.files[0])
   };
 
   const resetToDefault = useCallback(function (value) {
@@ -161,12 +160,10 @@ const AddAnncs = () => {
       // );
      
      
-      for (var pair of formData.entries()) {
-        console.log(pair[0]+ ' : ' + pair[1]);
-      }
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0]+ ' : ' + pair[1]);
+      // }
 
-
-     console.log(joinedFile);
     
     // Request made to the backend api 
     // Send formData object to my nodejs server for save in folder
@@ -174,12 +171,12 @@ const AddAnncs = () => {
     Api.post("/annonce",
       formData
     ).then((res)=>{
-      console.log(res)
-      alert(res)
+      //console.log(res)
+      alert(res.succes)
     })
     .catch((err)=>{
       console.error(err)
-      alert(err)
+      alert('Echec de l\'ajout')
     })
     setJoinedFile(null)
   }, []);

@@ -27,7 +27,7 @@ const App = () => {
               {" "}
             </Route>
 
-            <Route path="/:giftplace" exact element={ <Place /> } />
+            <Route path="/:giftplace" element={ <Place /> } />
 
             <Route path="/account/addanncs" exact element={ <AddAnncs /> } />
             <Route path="/account/addanncsnew" exact element={ <AddAnncsNew /> } />
