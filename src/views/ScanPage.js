@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
 // import { NavLink, redirect } from "react-router-dom";
-import ArrowLeft from "../components/ArrowLeft";
 
 import Popup from "reactjs-popup";
 
 import ClipLoader from "react-spinners/ClipLoader";
-import ButtonPrimary from "../components/ButtonPrimary";
+// import ButtonPrimary from "../components/ButtonPrimary";
 
-import { FormUrl } from "../hooks/Env"; //URL du type form
+// import { FormUrl } from "../hooks/Env"; //URL du type form
 
 const ScanPage = () => {
   const [urlScanned, setUrlScanned] = useState("");
@@ -19,7 +18,6 @@ const ScanPage = () => {
   const closeModal = () => setOpen(false);
 
   //const [redirectMsg, setRedirectMsg] = useState('');
-  const form = FormUrl;
 
   const Url_Valide = (UrlTest) => {
     var regexp = /[(http(s)?):(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/ig;
@@ -29,8 +27,7 @@ const ScanPage = () => {
     // } else{
     //   alert ("Mon URL n'est PAS valide");
     // }
-    var res = regexp.test(UrlTest)
-    return res ;
+    return regexp.test(UrlTest) ;
   }
 
   useEffect(() => {
@@ -56,7 +53,7 @@ const ScanPage = () => {
       setUrlScanned(result?.text);
       let url = Url_Valide( urlScanned )
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if (url == true ) {
+      if (url === true ) {
         setOpen(true)
       } else {
           console.log('data scanned :' + urlScanned)
@@ -68,7 +65,6 @@ const ScanPage = () => {
       console.error(error);
     }
   };
-
   return (
     <div>
       <div className="card text-center bg-transparent border-0">
