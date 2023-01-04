@@ -8,19 +8,15 @@
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
   display: none;
-  height: 100vh;
   width: 30vh;
   position: fixed;
   z-index : 10;
   right: 0;
-  background-color: #EFE5E5;
-  /* border-left: #00000073 2px solid; */
-
+ background-color: #ECECEC;
+ border-radius: .36rem;
 }
 
-.topnav #myLinks a {
-  border-bottom: #000 2px solid;
-}
+
 
 .head {
   color: rgb(0, 0, 0);
@@ -31,7 +27,7 @@
 }
 /* Style navigation menu links */
 .topnav a {
-  color: rgb(0, 0, 0);
+  color: #f81b1b;
   text-decoration: none;
   font-size: 17px;
   display: block;
@@ -63,6 +59,5 @@
 
 /* Style the active link (or home/logo) */
 .active {
-  background-color: #EFE5E5;
   color: black !important;
 }

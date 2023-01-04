@@ -10,9 +10,10 @@ var useCookie = (function() {
 
     var setCookie = (name, value) => {
         //var expD = new Date(new Date().getTime() + 1 * 60 * 1000);;
-        
+
+        var expD = process.env.REACT_APP_ANNONCE_CK_LIFETIME
         Cookie.set(name, value , {
-          expires : process.env.REACT_APP_ANNONCE_CK_LIFETIME
+          expires : 1
         })
     };
   

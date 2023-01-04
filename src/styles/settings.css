@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:900'); */
 
 body {
     font-family: 'Montserrat',Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #EFE5E5;
+    background-color: #ECECEC;
   }
 h1 {
     font-weight: bold;
@@ -51,7 +52,7 @@ h1 {
   backface-visibility: hidden;
   background: #004AAD;
   border: 0;
-  border-radius: .375rem;
+  /* border-radius: .375rem; */
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;

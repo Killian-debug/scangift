@@ -14,8 +14,16 @@ const ScanPage = () => {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("Cherchez un Qr Code");
 
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
+  const [successPop, setSuccessPop] = useState(false);
+  const [failedPop, setFailedPop] = useState(false);
+
+  const closeModal = () => {
+    setSuccessPop(false)
+    setFailedPop(false)
+    setWarningMsg("")
+  };
+
+  const [warningMsg, setWarningMsg] = useState("");
 
   //const [redirectMsg, setRedirectMsg] = useState('');
 
@@ -32,7 +40,7 @@ const ScanPage = () => {
 
   useEffect(() => {
       if (!loading) {
-        setTitle("Cherchez un Qr Code");
+        setTitle("Cherche un Qr Code");
       }
   }, [loading]);
 
@@ -50,12 +58,19 @@ const ScanPage = () => {
     if (!!result) {
       setTitle("Scan en cours...")
 
-      setUrlScanned(result?.text);
       setLoading(false);
-      
-      // setOpen(true)
+      setUrlScanned(result?.text)
+      // setSuccessPop(true)
       //window.open(urlScanned, '_blank', 'noopener,noreferer')
-      if ( Url_Valide(result?.text) === true ) setOpen(true)
+      if ( Url_Valide(result?.text) === true ) {
+        
+        setSuccessPop(true)
+        setFailedPop(false);
+      } else {
+        setFailedPop(true);
+        setSuccessPop(false)
+        setWarningMsg("Assurez-vous de scanner un QrCode ScanGift")
+      }
    
     }
     if (!!error) {
@@ -90,13 +105,13 @@ const ScanPage = () => {
         <div className="card-footer bg-transparent border-0">
           <div className="btn-go">
             <div className="btn-circle-go">
-              <p className="text-go">
-               {urlScanned} 
+              <p className="text-go color-warning">
+               {warningMsg} 
               </p>
             </div>
           </div>
         </div>
-        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+        <Popup open={successPop} closeOnDocumentClick onClose={closeModal}>
           <span className="close" type='button' onClick={closeModal}>
             &times;
           </span>
@@ -109,6 +124,29 @@ const ScanPage = () => {
                 <button
                   className="btn-primary"
                   onClick={() => {
+                    console.log("modal go to url ");
+                  }}
+                >
+                  Okay
+                </button>
+              </a>
+
+            </div>
+      </Popup>
+      <Popup open={failedPop} closeOnDocumentClick onClose={closeModal}>
+          <span className="close" type='button' onClick={closeModal}>
+            &times;
+          </span>
+        <div className="modal">
+         
+        </div>
+        <p className="content" > QrCode Non Valide !  </p>
+          <div className="actions d-flex justify-content-end">
+              <a type="button" className='text-right' target="_blank" rel='noreferrer'>
+                <button
+                  className="btn-danger"
+                  onClick={() => {
+                    closeModal()
                     console.log("modal go to url ");
                   }}
                 >

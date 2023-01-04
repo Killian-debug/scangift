@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ArrowLeft from "../components/ArrowLeft";
 import client from "../hooks/Data.js";
 import { useParams } from 'react-router-dom';
-
+import ClipLoader from "react-spinners/ClipLoader";
 import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import useCookie from "../hooks/Cookie";
@@ -13,41 +13,64 @@ const Place = () => {
   const [imgUrl, setImgUrl] = useState(addImg);
   const [annonce, setAnnonce] = useState({});
   const [isWinner, setIsWinner] = useState(Boolean);
-  const [ref, setRef] = useState({ ref: "" });
+  const [ref, setRef] = useState();
   // decrémentation de limite
   const [image, setImage] = useState(true);
   
+  const [loading, setLoading] = useState(true);
+
+  var els = []
+  const [medias, setMedias] = useState();
 
   const [addEl, setAddEl] = useState();
   //var addEl  // element de l'annonce
 
-  var destination = ref.ref != "" ? WinnerUrl + ref.ref : annonce.url_des;
+  var destination = ref != "" ? WinnerUrl + ref : annonce.url_des;
 
-  const msg = "Visiter";
+  useEffect(() => {
+    window.onload = (event) => {
+      setLoading(false)
+    };
+  }, [loading]);
 
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+    // Cancel the event
+    e.preventDefault();
+    if (e) {
+      e.returnValue = ''; // Legacy method for cross browser support
+    }
+    return ''; // Legacy method for cross browser support
+  };
 
   const onDestClick = () => {
+    client.post("gagner", {
+      idAnncs : annonce.id_anncs,
+      idEvent : annonce.id_event,
+      ref : ref, 
+    });
     console.log("CTA clicked");
-    // client.post("gagner", {
-    //   idAnncs : annonce.id_anncs,
-    //   idEvent : annonce.id_event,
-    //   ref : ref.ref, 
-    // });
+
+    window.open(destination, '_blank', 'noopener noreferrer')
+    // window.location.replace(destination)
+    
   };
 
   const [msgToPlace, setMsgToPlace] = useState('');
   let {giftplace} = useParams();
+
+
   useEffect(() => {
     if(giftplace && giftplace != "" ){
-        setMsgToPlace( "Bienvenue à " + giftplace.replace(/-/g,' ' ))
-        console.log('place :' + giftplace )
+        setMsgToPlace( "ScanGift avec " + giftplace.replace(/-/g,' ' ))
+        console.log('place : ' + giftplace )
     }     
   }, [giftplace, msgToPlace]);
 
   useEffect(() => {
     (async function () {
       if (
-        !useCookie.ifCookie("annonce") ||
+        useCookie.ifCookie("annonce") === false ||
         useCookie.getCookie("annonce") == ""
       ) {
         await client
@@ -68,7 +91,6 @@ const Place = () => {
         const y = JSON.parse(data);
         setAnnonce(y);
         console.log("from cookie :" + annonce.id_anncs);
-        console.log("id_anncs: " + y.objectif);
       }
        
     })();
@@ -76,22 +98,22 @@ const Place = () => {
 
   useEffect(() => {
     (async function (){ // est-ce une annonce gagnante ?
-     if (annonce.type_anncs == 1) {
-        
+     if (annonce.type_anncs === 1) {
+         // initalisation de la réf s'il gagne | generation de ref
+      
       //préciser que c'est une annonce gagnante
       setIsWinner(true);
-      
       useCookie.setCookie("annonce", JSON.stringify(annonce));
-
-      // initalisation de la réf s'il gagne | generation de ref
+      
       await client
-        .get("generateur/ref")
-        .then((res) => {
-          const d = res.data.data;
-          setRef(d); 
-          console.log(d);
-          })
-        .catch((err) => console.error(err));        
+      .get("generateur/ref")
+      .then((res) => {
+        const d = res.data.data.ref;
+        setRef(d); 
+        console.log(d);
+        })
+      .catch((err) => console.error(err)); 
+
     } 
     console.log(image)
     setImage(false)
@@ -99,19 +121,6 @@ const Place = () => {
   }, [annonce.type_anncs]); 
 
 
-  
-
-  window.onbeforeunload = (event) => {
-      const e = event || window.event;
-      // Cancel the event
-      e.preventDefault();
-      if (e) {
-        e.returnValue = ''; // Legacy method for cross browser support
-      }
-      return ''; // Legacy method for cross browser support
-    };
- var els = []
-const [medias, setMedias] = useState();
   // format d'affichage de l'annonce
   useEffect(() => {
     (async function() {
@@ -125,9 +134,9 @@ const [medias, setMedias] = useState();
         // set the add type
        
         if ((medias.length > 1)) {
-          setAddEl(<SliderAdd list={els} />)
+          setAddEl(<SliderAdd onClick={onDestClick} list={els} />)
         } else {
-          setAddEl(<img src={process.env.REACT_APP_API_BASE_URL+'/'+medias[0].url_med} alt="annonce" className="img-fluid" />)
+          setAddEl(<img src={process.env.REACT_APP_API_BASE_URL+'/'+medias[0].url_med} alt="annonce" className="scangif p-0 img-fluid" onClick={onDestClick} />)
         }
         console.log(image)
         setImage(true)
@@ -137,26 +146,32 @@ const [medias, setMedias] = useState();
   
 
   return (
-    <div>
+    <div className="text-center" >
       <div className="card bg-transparent text-center border-0">
         <div className="card-header bg-transparent border-0">
-          <h3 className="title-s-1 mb-4">
-          {msgToPlace} { isWinner ? '| Felicitations !' : "" }
+          <h3 className="title-s-1 mt-3">
+          {msgToPlace} 
           </h3>
         </div>
-        <div className="card-body mb-4 d-flex flex-column justify-content-center align-items-center">
-          <div className="scangif text-center">
+        <div className="mb-2 d-flex flex-column justify-content-center align-items-center">
+          <div className=" text-center">
+          <p className="font-italic text-danger mt-2" >Clique sur l'image !</p>
+
             {/* <img src={imgUrl} alt="annonce" className="img-fluid" /> */}
-            {addEl}
+            { loading ?  <ClipLoader
+            loading={loading}
+            size={80}
+          /> :  addEl }
           </div>
+
         </div>  
-        <div className="card-footer text-center bg-transparent border-0">
-         <p> { isWinner ? '' : annonce.description }</p>
+        <div className="text-center bg-transparent border-0">
+         <p> { annonce.description }</p>
             </div>
-      </div>
+        </div >
 
       {/* Button principal en bas de page */}
-      <ButtonPrimary toUrl={destination} text={msg} action={onDestClick} />
+      <ButtonPrimary toUrl='/scanpage' text="Scanne à nouveau" />
     </div>
   );
 };

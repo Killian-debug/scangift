@@ -3,22 +3,19 @@ import client from "../hooks/Data.js";
 import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import useCookie from "../hooks/Cookie";
-import addImg from "../assets/img/pub1.jpeg";
 import {WinnerUrl} from "../hooks/Env";
 
 const GiftPage = () => {
-  const [imgUrl, setImgUrl] = useState(addImg);
   const [annonce, setAnnonce] = useState({});
   const [isWinner, setIsWinner] = useState(Boolean);
-  const [ref, setRef] = useState({ ref: "" });
-  // decrémentation de limite
+  const [ref, setRef] = useState();
+
   const [image, setImage] = useState(true);
   
-
   const [addEl, setAddEl] = useState();
   //var addEl  // element de l'annonce
 
-  var destination = ref.ref != "" ? WinnerUrl + ref.ref : annonce.url_des;
+  var destination = ref != "" ? WinnerUrl + ref : annonce.url_des;
 
   const msg = "Visiter";
 
@@ -26,7 +23,7 @@ const GiftPage = () => {
     client.post("gagner", {
       idAnncs : annonce.id_anncs,
       idEvent : annonce.id_event,
-      ref : ref.ref, 
+      ref : ref, 
     });
     console.log("CTA clicked");
     
@@ -62,8 +59,9 @@ const GiftPage = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    (async function (){ // est-ce une annonce gagnante ?
+  
+
+  useEffect(() => { // est-ce une annonce gagnante ?
      if (annonce.type_anncs == 1) {
         
       //préciser que c'est une annonce gagnante
@@ -72,10 +70,10 @@ const GiftPage = () => {
       useCookie.setCookie("annonce", JSON.stringify(annonce));
 
       // initalisation de la réf s'il gagne | generation de ref
-      await client
+      client
         .get("generateur/ref")
         .then((res) => {
-          const d = res.data.data;
+          const d = res.data.data.ref;
           setRef(d); 
           console.log(d);
           })
@@ -83,7 +81,6 @@ const GiftPage = () => {
     } 
     console.log(image)
     setImage(false)
-  })() 
   }, [annonce.type_anncs]); 
 
 
@@ -111,8 +108,6 @@ const [medias, setMedias] = useState();
           els[i] = medias[i];
           }
 
-        // console.log(els)
-        
         // set the media type
         if ((medias.length > 1)) {
           setAddEl(<SliderAdd list={els} />)
@@ -135,14 +130,13 @@ const [medias, setMedias] = useState();
             { isWinner ? 'Felicitations !' : '' }
           </h3>
         </div>
-        <div className="card-body mb-1 d-flex flex-column justify-content-center align-items-center">
+        <div className="mb-2 d-flex flex-column justify-content-center align-items-center">
           <div className="scangif text-center">
-            {/* <img src={imgUrl} alt="annonce" className="img-fluid" /> */}
             {addEl}
           </div>
         </div>  
-        <div className="card-footer text-center bg-transparent border-0">
-        { isWinner ? '' : annonce.description }
+        <div className="text-center bg-transparent border-0">
+        {annonce.description }
             </div>
       </div>
 

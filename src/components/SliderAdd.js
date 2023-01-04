@@ -3,7 +3,7 @@ import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css"; 
 // import "slick-carousel/slick/slick-theme.css";
 
-const SliderAdd = memo(( {list} ) => {
+const SliderAdd = memo(( {list, onClick } ) => {
 
   useEffect(() => {
    console.log('slider')
@@ -31,8 +31,8 @@ const SliderAdd = memo(( {list} ) => {
     
 
     return (
-        <div>
-          <Slider {...settings}>
+        <div onClick={onClick} >
+          <Slider {...settings}  >
           {elList}
         </Slider>
       </div>

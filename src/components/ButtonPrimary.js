@@ -14,7 +14,7 @@ const ButtonPrimary = ({text, toUrl, action}) => {
         
         <div className="btn-principal mx-auto text-center" onClick={action}>
                 <a href={ toUrl } target="_blank" rel='noreferrer' >
-                    <button className="button-79">{text}</button>
+                    <button className="button-79 rounded">{text}</button>
                 </a>
         </div>
     );
