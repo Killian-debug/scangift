@@ -1,23 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import ArrowLeft from "../components/ArrowLeft";
+import React, { useEffect, useState } from "react";
 import client from "../hooks/Data.js";
 import { useParams } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import useCookie from "../hooks/Cookie";
-import addImg from "../assets/img/pub1.jpeg";
 import {WinnerUrl} from "../hooks/Env";
 
 const Place = () => {
-  const [imgUrl, setImgUrl] = useState(addImg);
   const [annonce, setAnnonce] = useState({});
   const [isWinner, setIsWinner] = useState(Boolean);
   const [ref, setRef] = useState();
   // decrémentation de limite
   const [image, setImage] = useState(true);
   
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   var els = []
   const [medias, setMedias] = useState();
@@ -25,13 +22,20 @@ const Place = () => {
   const [addEl, setAddEl] = useState();
   //var addEl  // element de l'annonce
 
-  var destination = ref != "" ? WinnerUrl + ref : annonce.url_des;
+  var destination = isWinner ? WinnerUrl + ref : annonce.url_des;
 
   useEffect(() => {
-    window.onload = (event) => {
+    setLoading(true)
+   
+    if( document.readyState === "complete" ) {
       setLoading(false)
-    };
+    }
   }, [loading]);
+
+  window.onload = (event) => {
+    setLoading(false)
+    console.log('La page est complètement chargée');
+  };
 
   window.onbeforeunload = (event) => {
     const e = event || window.event;
@@ -61,7 +65,7 @@ const Place = () => {
 
 
   useEffect(() => {
-    if(giftplace && giftplace != "" ){
+    if(giftplace && giftplace !== "" ){
         setMsgToPlace( "ScanGift avec " + giftplace.replace(/-/g,' ' ))
         console.log('place : ' + giftplace )
     }     
@@ -71,7 +75,7 @@ const Place = () => {
     (async function () {
       if (
         useCookie.ifCookie("annonce") === false ||
-        useCookie.getCookie("annonce") == ""
+        useCookie.getCookie("annonce") === ""
       ) {
         await client
           .get("select/aleatoire/annonce")
@@ -98,8 +102,8 @@ const Place = () => {
 
   useEffect(() => {
     (async function (){ // est-ce une annonce gagnante ?
-     if (annonce.type_anncs === 1) {
-         // initalisation de la réf s'il gagne | generation de ref
+     if (annonce.type_anncs == 1) {
+      // initalisation de la réf s'il gagne | generation de ref
       
       //préciser que c'est une annonce gagnante
       setIsWinner(true);

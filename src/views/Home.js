@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import scangif from "../assets/img/qr-code-scanner-tuto.gif";
 import GoButton from '../components/GoButton.js';
-import ButtonPrimary from '../components/ButtonPrimary';
 import {FormUrl} from "../hooks/Env";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
+    const [loading, setLoading] = useState(false);
 
     //url du typeForm
     const formLink = FormUrl;
-
+    useEffect(() => {
+        setLoading(true)
+       
+        if( document.readyState === "complete" ) {
+          setLoading(false)
+        }
+      }, [loading]);
+    
+      window.onload = (event) => {
+        setLoading(false)
+        console.log('La page est complètement chargée');
+      };
     return (
         <div>
             <div className="card bg-transparent text-center border-0">
@@ -17,7 +29,11 @@ const Home = () => {
                 </div>
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                     <div className="scangif m-2 text-center">
+                   { loading ?  <ClipLoader
+            loading={loading}
+            size={80} /> :
                         <img src={scangif} alt="Scan tuto" className="img-fluid rounded-circle scangif" />
+                        }
                     </div>
                     <GoButton toUrl="/scanpage" text="scanner" />              
                 </div>

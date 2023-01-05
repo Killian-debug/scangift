@@ -4,30 +4,33 @@
   position: relative;
 }
 
-
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
   display: none;
-  width: 30vh;
+  /* width: 30vh; */
   position: fixed;
-  z-index : 10;
+  z-index: 10;
   right: 0;
- background-color: #ECECEC;
- border-radius: .36rem;
+  background-color: #ececec;
+  border-radius: 0.36rem;
+  border-left: #494949 1px solid;
+  filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.72));
 }
 
-
+#myLinks a {
+  margin-bottom: 0.5rem;
+}
 
 .head {
   color: rgb(0, 0, 0);
-  padding-top : 14px;
+  padding-top: 14px;
   padding-left: 16px;
   text-decoration: none;
   display: block;
 }
 /* Style navigation menu links */
 .topnav a {
-  color: #f81b1b;
+  color: #2c2c2c;
   text-decoration: none;
   font-size: 17px;
   display: block;
@@ -39,7 +42,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  font-size:  30px;
+  font-size: 30px;
 }
 
 /* Add a grey background color on mouse-over */
@@ -48,13 +51,13 @@
 }
 
 .top-btn {
-  background-color: #004AAD;
+  background-color: #004aad;
   color: white;
 }
 .top-btn:hover {
-  color: #004AAD;
+  color: #004aad;
   background-color: white;
-  border: #004AAD 2px solid;
+  border: #004aad 2px solid;
 }
 
 /* Style the active link (or home/logo) */
