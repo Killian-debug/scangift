@@ -9,11 +9,12 @@ var useCookie = (function() {
     };
 
     var setCookie = (name, value) => {
-        //var expD = new Date(new Date().getTime() + 1 * 60 * 1000);;
+        //var expD = new Date(new Date().getTime() + 1 * 60 * 1000);
+        // cookie de 15min
+        var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
 
-        var expD = process.env.REACT_APP_ANNONCE_CK_LIFETIME
         Cookie.set(name, value , {
-          expires : 1
+          expires : inFifteenMinutes
         })
     };
   

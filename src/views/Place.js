@@ -22,7 +22,7 @@ const Place = () => {
   const [addEl, setAddEl] = useState();
   //var addEl  // element de l'annonce
 
-  var destination = isWinner ? WinnerUrl + ref : annonce.url_des;
+  var destination = isWinner ? WinnerUrl + annonce.ref : annonce.url_des;
 
   useEffect(() => {
     setLoading(true)
@@ -53,7 +53,6 @@ const Place = () => {
       idEvent : annonce.id_event,
       ref : ref, 
     });
-    console.log("CTA clicked");
 
     window.open(destination, '_blank', 'noopener noreferrer')
     // window.location.replace(destination)
@@ -73,10 +72,10 @@ const Place = () => {
 
   useEffect(() => {
     (async function () {
-      if (
-        useCookie.ifCookie("annonce") === false ||
-        useCookie.getCookie("annonce") === ""
-      ) {
+      // if (
+      //   useCookie.ifCookie("annonce") === false ||
+      //   useCookie.getCookie("annonce") === ""
+      // ) {
         await client
           .get("select/aleatoire/annonce")
           .then((res) => {
@@ -90,12 +89,13 @@ const Place = () => {
           .catch((err) => {
             console.error(err);
           });
-      } else {
-        const data = useCookie.getCookie("annonce");
-        const y = JSON.parse(data);
-        setAnnonce(y);
-        console.log("from cookie :" + annonce.id_anncs);
-      }
+      // } 
+      // else {
+      //   const data = useCookie.getCookie("annonce");
+      //   const y = JSON.parse(data);
+      //   setAnnonce(y);
+      //   console.log("from cookie :" + annonce.id_anncs);
+      // }
        
     })();
   }, []);
@@ -107,18 +107,40 @@ const Place = () => {
       
       //préciser que c'est une annonce gagnante
       setIsWinner(true);
-      useCookie.setCookie("annonce", JSON.stringify(annonce));
       
-      await client
+      if (
+        useCookie.ifCookie("annonce") === false ||
+        useCookie.getCookie("annonce") === ""
+      ) {
+         await client
       .get("generateur/ref")
       .then((res) => {
         const d = res.data.data.ref;
-        setRef(d); 
-        console.log(d);
+        setRef(d);
+
+        annonce.ref = d
+        setAnnonce(annonce)
+
+        useCookie.setCookie("annonce", JSON.stringify(annonce));
+
         })
       .catch((err) => console.error(err)); 
+      } else {
+        await client
+          .get("select/aleatoire/annonce")
+          .then((res) => {
+            const data = res.data.data;
 
-    } 
+            setAnnonce(JSON.parse(JSON.stringify(data)));
+            console.log(data);
+            console.log("ann :" + JSON.stringify(data));
+            //useCookie.setCookie("annonce", JSON.stringify(data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    }
     console.log(image)
     setImage(false)
   })() 

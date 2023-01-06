@@ -201,7 +201,7 @@ const AddAnncs = () => {
               <small id="fileHelpId" className="form-text text-muted">Parcourir vos dossiers</small>
           </div> */}
             <InputDef name="url_des" type="url" label="Destination" />
-            <InputDef name="limite" type="number" label="Limite" helpText="limite d'affichage" />
+            <InputDef name="limite" type="number" label="Limite" helpText="limite d'affichage ( -1= illimité )" />
 
             <InputDef name="type_anncs" type="number" label="Type d'annonce" helpText="1=Gagnant | 2=non gagnant" max="2" min="1" />
 
