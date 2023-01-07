@@ -25,8 +25,6 @@ const GiftPage = () => {
       idEvent : annonce.id_event,
       ref : ref, 
     });
-    console.log("CTA clicked");
-    
   };
 
   useEffect(() => {

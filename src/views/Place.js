@@ -6,6 +6,7 @@ import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import useCookie from "../hooks/Cookie";
 import {WinnerUrl} from "../hooks/Env";
+import SetIP from "../hooks/SetIp.js";
 
 const Place = () => {
   const [annonce, setAnnonce] = useState({});
@@ -64,6 +65,9 @@ const Place = () => {
 
 
   useEffect(() => {
+
+    SetIP()
+
     if(giftplace && giftplace !== "" ){
         setMsgToPlace( "ScanGift avec " + giftplace.replace(/-/g,' ' ))
         console.log('place : ' + giftplace )
@@ -127,7 +131,7 @@ const Place = () => {
       .catch((err) => console.error(err)); 
       } else {
         await client
-          .get("select/aleatoire/annonce")
+          .get("select/pub/annonce")
           .then((res) => {
             const data = res.data.data;
 
@@ -172,33 +176,37 @@ const Place = () => {
   
 
   return (
-    <div className="text-center" >
+     <div className="text-center" >
+      
+      { loading ?  <ClipLoader
+            loading={loading}
+            size={80}
+          /> :
       <div className="card bg-transparent text-center border-0">
         <div className="card-header bg-transparent border-0">
           <h3 className="title-s-1 mt-3">
           {msgToPlace} 
           </h3>
         </div>
+        
         <div className="mb-2 d-flex flex-column justify-content-center align-items-center">
           <div className=" text-center">
           <p className="font-italic text-danger mt-2" >Clique sur l'image !</p>
 
-            {/* <img src={imgUrl} alt="annonce" className="img-fluid" /> */}
-            { loading ?  <ClipLoader
-            loading={loading}
-            size={80}
-          /> :  addEl }
+            { addEl }
           </div>
 
-        </div>  
+        </div>   
         <div className="text-center bg-transparent border-0">
          <p> { annonce.description }</p>
             </div>
+            
+            <ButtonPrimary toUrl='/scanpage' text="Scanne à nouveau" />
         </div >
 
-      {/* Button principal en bas de page */}
-      <ButtonPrimary toUrl='/scanpage' text="Scanne à nouveau" />
-    </div>
+     }
+     </div>
+  
   );
 };
 

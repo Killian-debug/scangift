@@ -5,6 +5,10 @@ import { QrReader } from "react-qr-reader";
 import Popup from "reactjs-popup";
 
 import ClipLoader from "react-spinners/ClipLoader";
+
+import SetIP, { getIP } from "../hooks/SetIp";
+import useCookie from "../hooks/Cookie";
+import client from "../hooks/Data";
 // import ButtonPrimary from "../components/ButtonPrimary";
 
 // import { FormUrl } from "../hooks/Env"; //URL du type form
@@ -16,6 +20,8 @@ const ScanPage = () => {
 
   const [successPop, setSuccessPop] = useState(false);
   const [failedPop, setFailedPop] = useState(false);
+  const [warningMsg, setWarningMsg] = useState("");
+
 
   const closeModal = () => {
     setSuccessPop(false)
@@ -23,7 +29,6 @@ const ScanPage = () => {
     setWarningMsg("")
   };
 
-  const [warningMsg, setWarningMsg] = useState("");
 
   //const [redirectMsg, setRedirectMsg] = useState('');
 
@@ -43,6 +48,31 @@ const ScanPage = () => {
         setTitle("Cherche un Qr Code");
       }
   }, [loading]);
+
+  useEffect(() => {
+    
+    SetIP()
+
+  });
+  
+
+  useEffect(() => {
+    (async function () {
+     
+        await client
+          .post("/visite")
+          .then((res) => {
+            const data = res.data.messageJson;
+
+            console.log(data);
+            //useCookie.setCookie("annonce", JSON.stringify(data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+     
+    })();
+  }, []);
 
   
 

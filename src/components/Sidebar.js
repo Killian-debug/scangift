@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from "react";
-import { NavLink, useLocation, useParams } from "react-router-dom";
-import {FormUrl} from "../hooks/Env";
-import ArrowLeft from "../components/ArrowLeft";
+import React from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
 import src from "../assets/img/logo192.png";
 
 const Sidebar = () => {
-  
+  const history = useNavigate()
+
+  function goToHome() {
+    history('/')
+  }
   
   /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
   function myFunction() {
@@ -56,7 +59,7 @@ const Sidebar = () => {
             <span style={{ color: "#004AAD" }} > </span><span style={{ color: "#004AAD" }} >ScanGift</span> */}
           {/* </p> */}  
           
-          <img src={src} alt="logo scangift" width="40px" className="img-fluid rounded" />
+          <img src={src} alt="logo scangift" width="40px" className="img-fluid rounded" onClick={goToHome} />
        
       </div>
       {/* <!-- Navigation links (hidden by default) --> */}

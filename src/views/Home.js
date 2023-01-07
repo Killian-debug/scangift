@@ -3,15 +3,21 @@ import scangif from "../assets/img/qr-code-scanner-tuto.gif";
 import GoButton from '../components/GoButton.js';
 import {FormUrl} from "../hooks/Env";
 import ClipLoader from "react-spinners/ClipLoader";
+import SetIP from '../hooks/SetIp';
+
 
 const Home = () => {
     const [loading, setLoading] = useState(false);
+    
+    useEffect(() => {
+        SetIP()
+    }, []);
 
     //url du typeForm
     const formLink = FormUrl;
     useEffect(() => {
         setLoading(true)
-       
+        
         if( document.readyState === "complete" ) {
           setLoading(false)
         }
@@ -21,6 +27,7 @@ const Home = () => {
         setLoading(false)
         console.log('La page est complètement chargée');
       };
+
     return (
         <div>
             <div className="card bg-transparent text-center border-0">

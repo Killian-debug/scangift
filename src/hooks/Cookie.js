@@ -14,7 +14,7 @@ var useCookie = (function() {
         var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
 
         Cookie.set(name, value , {
-          expires : inFifteenMinutes
+          expires : 1
         })
     };
   
