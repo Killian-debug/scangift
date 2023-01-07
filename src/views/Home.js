@@ -11,7 +11,7 @@ const Home = () => {
     
     useEffect(() => {
         SetIP()
-    }, []);
+    });
 
     //url du typeForm
     const formLink = FormUrl;

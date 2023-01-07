@@ -172,7 +172,7 @@ const AddAnncs = () => {
       formData
     ).then((res)=>{
       //console.log(res)
-      alert(res.msg)
+      alert(res.data.msg)
     })
     .catch((err)=>{
       console.error(err)
