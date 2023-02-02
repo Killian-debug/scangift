@@ -1,16 +1,18 @@
-import axios from 'axios';
 import client from './Data';
 
-const SetIP = async () => {
+const SetStat = async (code_event=null, id_anncs=null) => {
    
-    const res = await axios.get('https://geolocation-db.com/json/')
-    console.log(res.data);
+    // const res = await axios.get('https://geolocation-db.com/json/')
+    // console.log(res.data);
 
-    var IP = res.data.IPv4
+    // var IP = res.data.IPv4
+    var IP = "coco"
     console.log('okay')
 
     await client
     .post("visite", {
+      code_event : code_event,
+      id_anncs : id_anncs,
       url : window.location.pathname,
       ip : IP
     })
@@ -22,4 +24,4 @@ const SetIP = async () => {
     } )
   }
 
-export default SetIP;
+export default SetStat;

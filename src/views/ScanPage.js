@@ -6,9 +6,9 @@ import Popup from "reactjs-popup";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
-import SetIP, { getIP } from "../hooks/SetIp";
-import useCookie from "../hooks/Cookie";
+import SetStat from "../hooks/SetStat";
 import client from "../hooks/Data";
+
 // import ButtonPrimary from "../components/ButtonPrimary";
 
 // import { FormUrl } from "../hooks/Env"; //URL du type form
@@ -51,7 +51,7 @@ const ScanPage = () => {
 
   useEffect(() => {
     
-    SetIP()
+    SetStat()
 
   });
   

@@ -9,11 +9,12 @@ import React from 'react';
  */
 const ButtonPrimary = ({text, toUrl, action}) => {
 
+    // window.open(toUrl, '_self')
+
     return (
 
-        
         <div className="btn-principal mx-auto text-center" onClick={action}>
-                <a href={ toUrl } target="_blank" rel='noreferrer' >
+                <a href={ toUrl } target="_self" rel='noreferrer' >
                     <button className="button-79 rounded">{text}</button>
                 </a>
         </div>

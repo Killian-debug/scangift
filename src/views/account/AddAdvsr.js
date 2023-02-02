@@ -1,7 +1,7 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState, useEffect } from "react";
 import PrimaryButton from "../../components/Buttons";
 import Api from "../../hooks/Data";
-import AdminNav from "../../components/Admin/AdminNav";
+import useCookie from "../../hooks/Cookie";
 
 const FormContext = React.createContext({});
 
@@ -74,6 +74,10 @@ const InputDef = ({ name, label, type, helpText }) => {
 };
 
 const AddAdvsr = () => {
+  useEffect(() => {
+  
+    useCookie.delCookie('pauser')
+  }, []);
 
   // const [joinedFile, setJoinedFile] = useState();
 
@@ -101,7 +105,6 @@ const AddAdvsr = () => {
 
   return (
     <div className="container-fluid pt-5">
-      <AdminNav></AdminNav>
       <h2 className="d-flex justify-content-center">Inscription annonceur</h2>
       <div className="d-flex justify-content-center ">
         <div className="col-md-6">

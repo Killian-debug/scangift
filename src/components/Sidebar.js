@@ -65,7 +65,7 @@ const Sidebar = () => {
       {/* <!-- Navigation links (hidden by default) --> */}
       <div id="myLinks" className="p-3 text-left">
         {/* <a href={FormUrl} target="_blank" rel="noreferrer">Campagne</a> */}
-        <a href="https://wa.me/+22940538164" target="_blank" rel="noopener noreferrer"> <i className="fa fa-whatsapp font-weight-bold  text-dark"> :</i> whatsapp</a> 
+        <a href={"https://wa.me/" + process.env.REACT_APP_CONTACT_NUMBER } target="_blank" rel="noopener noreferrer"> <i className="fa fa-whatsapp font-weight-bold  text-dark"> :</i> whatsapp</a> 
         <a href="https://instagram.com/scan.gift" target="_blank" rel="noopener noreferrer"> <i className="fa fa-instagram font-weight-bold text-dark" aria-hidden="true"> :</i> @scangift</a>
 
       </div>

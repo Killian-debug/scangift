@@ -1,9 +1,9 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState, useEffect } from "react";
 import PrimaryButton from "../../components/Buttons";
 import Api from "../../hooks/Data";
-import AdminNav from "../../components/Admin/AdminNav";
 // import SelectField from "../../components/selectField";
 import axios from "axios";
+import useCookie from "../../hooks/Cookie";
 
 const FormContext = React.createContext({});
 
@@ -21,6 +21,7 @@ const emptyObj = (cfamFwdDtls) => {
   // }
 }
 }
+
 
 
 function urlencodeFormData(fd){
@@ -94,7 +95,7 @@ const FileField = ({name, label, helpText }) => {
   );
 };
 
-const InputDef = ({ name, label, type, helpText, min, max }) => {
+const InputDef = ({ name, label, type, helpText, placeholder='', min, max }) => {
   const data = useContext(FormContext);
   const inputChange = useCallback(
     function (e) {
@@ -113,10 +114,42 @@ const InputDef = ({ name, label, type, helpText, min, max }) => {
         className="form-control"
         name={name}
         id={name}
+        placeholder={placeholder}
         aria-describedby="helpId"
-        placeholder={data[name] || ""}
         onChange={inputChange}
       />
+      <small id="helpId" className="form-text text-muted">
+        {helpText ? helpText : name }
+      </small>
+    </div>
+  );
+};
+
+const SelectDef = ({ options, name, label, helpText}) => {
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const data = useContext(FormContext);
+  const inputChange = useCallback(
+    function (e) {
+      data.handleChange(e.target.name, e.target.value);
+     
+    },
+    [data] 
+  );
+  return (
+    <div className="form-group">
+      <label htmlFor={name}>{label}</label>
+      <select className="form-control" name={name} id={name}>
+        {options.map((el, index) => (
+          <option
+            key={index}
+            value={index + 1}
+            onChange={inputChange}
+          >
+            {el}
+          </option>
+        ))}
+      </select>
       <small id="helpId" className="form-text text-muted">
         {helpText ? helpText : name }
       </small>
@@ -132,18 +165,18 @@ const InputDef = ({ name, label, type, helpText, min, max }) => {
 // };
 
 const AddAnncs = () => {
-  const Objectifs = ["Abonnee", "Visite", "Message"];
-  const typeAnncs = ["Gagnante", "Publicité"];
-  const [selectedTypeAnncs, setSelectedTypeAnncs] = useState('');
-  const [joinedFile, setJoinedFile] = useState(null);
+  
+  // const [joinedFile, setJoinedFile] = useState(null);
 
-  const onFileChange = (e) => {
-    setJoinedFile(e.target.files[0])
-   // console.log(e.target.files[0])
-  };
+  // const onFileChange = (e) => {
+  //   setJoinedFile(e.target.files[0])
+  //  // console.log(e.target.files[0])
+  // };
 
-  const resetToDefault = useCallback(function (value) {
-    emptyObj(value)
+
+  useEffect(() => {
+  
+    useCookie.delCookie('pauser')
   }, []);
 
   const handleSubmit = useCallback(function (value) {
@@ -178,20 +211,20 @@ const AddAnncs = () => {
       console.error(err)
       alert('Echec de l\'ajout ! Veuillez vérifier tout les champs et réessayer !')
     })
-    setJoinedFile(null)
+
   }, []);
 
 
   return (
     <div className="container-fluid p-5">
-      <AdminNav/>
-      <h2 className="d-flex justify-content-center">Ajouter une annonce</h2>
+   
+      <h2 className="d-flex justify-content-center text-center">Ajouter une annonce</h2>
       <div className="d-flex justify-content-center ">
         <div className="col-md-6">
        
           <FormWithContext
            
-            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'0', id_anncrs:'1', id_event:'1', joinedFile:{} }}
+            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'-1', id_anncrs:'3', id_event:'', joinedFile:{} }}
             onSubmit={handleSubmit}
           >
             <FileField name="joinedFile" label="Affiche" helpText="Parcourir vos dossiers" />
@@ -200,10 +233,14 @@ const AddAnncs = () => {
               <input type="file" className="form-control-file" name="joinedFile" accept="png,jpg,jpeg"  id="file" placeholder="" aria-describedby="fileHelpId" onChange={onFileChange} />
               <small id="fileHelpId" className="form-text text-muted">Parcourir vos dossiers</small>
           </div> */}
-            <InputDef name="url_des" type="url" label="Destination" />
-            <InputDef name="limite" type="number" label="Limite" helpText="limite d'affichage ( -1= illimité )" />
+            <InputDef name="url_des" type="url" label="Destination" placeholder="https://monsite.com" helpText="url d'atterissage" />
+            <InputDef name="limite" type="number" label="Limite" helpText="Nombre d'affichage ( laissez vide si illimité)" placeholder="1" />
 
             <InputDef name="type_anncs" type="number" label="Type d'annonce" helpText="1=Gagnant | 2=non gagnant" max="2" min="1" />
+            
+            <InputDef name="id_event" type="number" label="Id de campagne attribué" placeholder="C01" helpText="Votre id attribué " min="1" />
+            
+            {/* <SelectDef options={Objectifs} name="id_event" label="Evenement" helpText="Choisissez la campagne d'affichage des annonces" /> */}
 
             {/* <InputDef name="naissance" label="Date de fin" type="date" /> */}
             {/* <ul className="d-flex l-none">
@@ -264,7 +301,7 @@ const AddAnncs = () => {
             </div> */}
 
             <div className="form-group">
-              <InputDef name="description" type="text" label="Message" helpText="message appel à l'action" />
+              <InputDef name="description" type="text" label="Message" helpText="message d'appel à l'action" />
               {/* <textarea className="form-control" name="description" id="description" rows="3" onChange={(e)=> fieldChange(e)} ></textarea> */}
             </div>
             

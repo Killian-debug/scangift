@@ -8,13 +8,18 @@ var useCookie = (function() {
       return x;    // Or pull this from cookie/localStorage
     };
 
-    var setCookie = (name, value) => {
+    var setCookie = (name, value, min = 1440) => {
         //var expD = new Date(new Date().getTime() + 1 * 60 * 1000);
         // cookie de 15min
-        var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+      
+        var duration = new Date(new Date().getTime() + min * 60 * 1000);
+        const d = JSON.stringify({
+          value : value,
+          expiry : duration
+        })
 
-        Cookie.set(name, value , {
-          expires : 1
+        Cookie.set(name, d , {
+          expires : duration
         })
     };
   
