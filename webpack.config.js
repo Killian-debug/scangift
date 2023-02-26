@@ -6,12 +6,12 @@ module.exports = () => {
             entry: "./src/index.js",
             output: {
                 publicPath: "/",
-                filename: "[name].[hash].js",
+                filename: "[hash].[name].js",
                 path: path.resolve(__dirname, "build")
             },
             plugins: [
                 new HtmlWebpackPlugin({
-                    hash: true,
+                    hash: false,
                     template: "./public/index.html"
                 }),
             ]

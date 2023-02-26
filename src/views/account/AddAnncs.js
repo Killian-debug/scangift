@@ -224,7 +224,7 @@ const AddAnncs = () => {
        
           <FormWithContext
            
-            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'-1', id_anncrs:'3', id_event:'', joinedFile:{} }}
+            defaultValue={{ description:'' , objectif :'Visite' , type_med:'1' , type_url:'whatsapp', url_des:'', type_anncs:'', duree:'3', limite:'-1', id_anncrs:'3', id_event:'3', joinedFile:{} }}
             onSubmit={handleSubmit}
           >
             <FileField name="joinedFile" label="Affiche" helpText="Parcourir vos dossiers" />
@@ -238,7 +238,7 @@ const AddAnncs = () => {
 
             <InputDef name="type_anncs" type="number" label="Type d'annonce" helpText="1=Gagnant | 2=non gagnant" max="2" min="1" />
             
-            <InputDef name="id_event" type="number" label="Id de campagne attribué" placeholder="C01" helpText="Votre id attribué " min="1" />
+            <InputDef name="id_event" type="text" label="Id de campagne attribué" placeholder="1" helpText="Votre id attribué " min="1" />
             
             {/* <SelectDef options={Objectifs} name="id_event" label="Evenement" helpText="Choisissez la campagne d'affichage des annonces" /> */}
 

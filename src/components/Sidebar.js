@@ -7,7 +7,7 @@ const Sidebar = () => {
   const history = useNavigate()
 
   function goToHome() {
-    history('/')
+    window.open('https://scangift.ml', '_self')
   }
   
   /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */

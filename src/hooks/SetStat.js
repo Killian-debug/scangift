@@ -1,14 +1,13 @@
+import axios from 'axios';
 import client from './Data';
 
 const SetStat = async (code_event=null, id_anncs=null) => {
    
-    // const res = await axios.get('https://geolocation-db.com/json/')
-    // console.log(res.data);
+    const res = await axios.get('https://geolocation-db.com/json/')
+    console.log(res.data);
 
-    // var IP = res.data.IPv4
-    var IP = "coco"
-    console.log('okay')
-
+    var IP = res.data.IPv4
+   
     await client
     .post("visite", {
       code_event : code_event,

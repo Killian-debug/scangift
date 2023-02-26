@@ -83,20 +83,17 @@ const Place = () => {
     }, 3000 );
     
     if (idevent && idevent !== "") {
-      setQrString("/select/aleatoire/annonce/" + idevent);
+      setQrString("/select/aleatoire/annonce/" + 3);
     } else {
       if (
         !useCookie.ifCookie("annonce") ||
         useCookie.getCookie("annonce") == ""
       ) {
-        setQrString("select/aleatoire/annonce");
+        setQrString("/select/aleatoire/annonce");
       } else {
         setQrString("/select/pub/annonce");
       }
     } 
-
- 
-
   }, []);
 
   useEffect(() => {

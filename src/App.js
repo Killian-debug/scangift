@@ -18,7 +18,7 @@ const App = () => {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 1800);
 
-
+  var ndate = Date();
   const [timer, setTimer] = useState(undefined);
  
   useEffect(() => {
@@ -26,12 +26,11 @@ const App = () => {
       const t = useCookie.getCookie('pauser')
       const val = JSON.parse(t)
 
-      console.log(time)
-      const date = new Date(val.expiry)
-
-      setTimer(date)
+      ndate = new Date(val.expiry)
+      console.log(ndate)
+      setTimer(ndate)
     }
-  }, []);
+  }, [timer]);
  
   return (   
    <BrowserRouter>
@@ -39,11 +38,11 @@ const App = () => {
       <Sidebar />
    
      
-     <Routes>   {
+       {
         timer ? <Timer expiryTimestamp={timer} />
        
         :
-      <>
+     <Routes>
             <Route path="/" element={<Home />}/>
 
             <Route path="/scanpage" element={<ScanPage />}/>
@@ -53,9 +52,10 @@ const App = () => {
             <Route path="/:giftplace" element={ <Place /> } />
 
             <Route path="/:idevent/:giftplace/:other" element={ <Place /> } />
- </>
-       } 
+            </Routes>
 
+       } 
+          <Routes>
             <Route path="/account/addanncs" exact element={ <AddAnncs /> } />
            
            <Route path="/account/addanncsnew" exact element={ <AddAnncsNew /> } />

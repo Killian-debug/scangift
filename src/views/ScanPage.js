@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
-// import { NavLink, redirect } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import Popup from "reactjs-popup";
 
@@ -29,6 +29,8 @@ const ScanPage = () => {
     setWarningMsg("")
   };
 
+
+  const navigate = useNavigate()
 
   //const [redirectMsg, setRedirectMsg] = useState('');
 
@@ -150,16 +152,18 @@ const ScanPage = () => {
         </div>
         <p className="content" > Je tente ma chance ! </p>
           <div className="actions d-flex justify-content-end">
-              <a href={urlScanned} className='text-right' target="_blank" rel='noreferrer'>
+      
+              <span className='text-right' >
                 <button
                   className="btn-primary"
                   onClick={() => {
-                    console.log("modal go to url ");
+                    var nUrl = new URL(urlScanned)
+                    navigate(nUrl.pathname)
                   }}
                 >
                   Okay
                 </button>
-              </a>
+              </span>
 
             </div>
       </Popup>
