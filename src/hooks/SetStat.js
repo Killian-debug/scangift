@@ -1,7 +1,7 @@
 import axios from 'axios';
 import client from './Data';
 
-const SetStat = async (code_event=null, id_anncs=null) => {
+const SetStat = async (id_event=null, id_anncs=null) => {
    
     const res = await axios.get('https://geolocation-db.com/json/')
     console.log(res.data);
@@ -10,7 +10,7 @@ const SetStat = async (code_event=null, id_anncs=null) => {
    
     await client
     .post("visite", {
-      code_event : code_event,
+      id_event : id_event,
       id_anncs : id_anncs,
       url : window.location.pathname,
       ip : IP

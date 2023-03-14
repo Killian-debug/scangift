@@ -47,6 +47,10 @@ const Place = () => {
     console.log("La page est complètement chargée");
     useCookie.setCookie("pauser", true, 20);
 
+    setTimeout(() => {
+      SetStat(annonce.id_event, annonce.id_anncs);
+    }, 3000 );
+  
   };
 
   // window.onbeforeunload = (event) => {
@@ -78,11 +82,9 @@ const Place = () => {
 
   useEffect(() => {
     
-    setTimeout(() => {
-      SetStat(idevent, annonce.id_anncs);
-    }, 3000 );
-    
-    if (idevent && idevent !== "") {
+  
+
+    if (idevent != undefined && idevent !== "") {
       setQrString("/select/aleatoire/annonce/" + 3);
     } else {
       if (
@@ -176,7 +178,7 @@ const Place = () => {
       } else {
         setAddEl(
           <img
-            src={process.env.REACT_APP_API_BASE_URL + "/" + medias[0].url_med}
+            src={process.env.REACT_APP_API_BASE_URL + "/vendor/uploads/" + medias[0].url_med}
             alt="annonce"
             className="scangif p-0 img-fluid"
             onClick={onDestClick}
@@ -195,7 +197,7 @@ const Place = () => {
       ) : (
         <div className="card bg-transparent text-center border-0">
           <div className="card-header bg-transparent border-0">
-            <h3 className="title-s-1 text-danger my-3">Clique sur l'image !</h3>
+            <h3 className="title-s-1 my-3 change-color">Clique sur l'image !</h3>
           </div>
 
           <div className="mb-2 d-flex flex-column justify-content-center align-items-center">

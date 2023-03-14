@@ -56,25 +56,7 @@ const ScanPage = () => {
     SetStat()
 
   });
-  
 
-  useEffect(() => {
-    (async function () {
-     
-        await client
-          .post("/visite")
-          .then((res) => {
-            const data = res.data.messageJson;
-
-            console.log(data);
-            //useCookie.setCookie("annonce", JSON.stringify(data));
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-     
-    })();
-  }, []);
 
   
 
