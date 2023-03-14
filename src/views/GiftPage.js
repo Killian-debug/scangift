@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import client from "../hooks/Data.js";
+import client from "../hooks/Axios";
 import SliderAdd from "../components/SliderAdd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import useCookie from "../hooks/Cookie";

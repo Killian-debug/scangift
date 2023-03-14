@@ -5,13 +5,15 @@ import GiftPage from "./views/GiftPage.js";
 import ScanPage from "./views/ScanPage.js";
 import Place from "./views/Place.js";
 import Sidebar from "./components/Sidebar.js";
-import AddAnncs from "./views/account/AddAnncs.js";
-import AddAdvsr from "./views/account/AddAdvsr.js";
-import AddAnncsNew from "./views/account/AddAnncs.new.js";
+import AddAnncs from "./views/dashboard/AddAnncs.js";
+import AddAdvsr from "./views/dashboard/AddAdvsr.js";
+import AddAnncsNew from "./views/dashboard/AddAnncs.new.js";
 import Footer from "./components/Footer.js";
 import useCookie from "./hooks/Cookie.js";
 import Timer from "./components/Timer.js";
 import Test from "./views/Test.js";
+import SignUp from "./views/login/SignUp.js";
+import SignIn from "./views/login/SignIn.js";
 
 const App = () => {
 
@@ -37,11 +39,10 @@ const App = () => {
  
       <Sidebar />
    
-     
+{/*      
        {
         timer ? <Timer expiryTimestamp={timer} />
-       
-        :
+        : */}
      <Routes>
             <Route path="/" element={<Home />}/>
 
@@ -52,15 +53,19 @@ const App = () => {
             <Route path="/:giftplace" element={ <Place /> } />
 
             <Route path="/:idevent/:giftplace/:other" element={ <Place /> } />
-            </Routes>
+            {/* </Routes>
 
        } 
-          <Routes>
-            <Route path="/account/addanncs" exact element={ <AddAnncs /> } />
+          <Routes> */}
+            <Route path="/dashboard/addanncs" exact element={ <AddAnncs /> } />
            
-           <Route path="/account/addanncsnew" exact element={ <AddAnncsNew /> } />
+           <Route path="/dashboard/addanncsnew" exact element={ <AddAnncsNew /> } />
 
-           <Route path="/account/addadvsr" exact element={ <AddAdvsr /> } />
+           <Route path="/signup" exact element= { <SignUp  /> } />
+
+           <Route path="/signin" exact element={<SignIn />} />
+          
+           <Route path="/dashboard/addadvsr" exact element={ <AddAdvsr /> } />
 
 {/*            
             <Route path="/popup" exact element={ <ControlledPopup/> } /> */}

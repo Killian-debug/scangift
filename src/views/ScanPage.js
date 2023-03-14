@@ -7,7 +7,7 @@ import Popup from "reactjs-popup";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import SetStat from "../hooks/SetStat";
-import client from "../hooks/Data";
+import client from "../hooks/Axios";
 
 // import ButtonPrimary from "../components/ButtonPrimary";
 

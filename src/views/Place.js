@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import client from "../hooks/Data.js";
+import client from "../hooks/Axios.js";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import SliderAdd from "../components/SliderAdd";

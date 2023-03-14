@@ -1,5 +1,5 @@
 import axios from 'axios';
-import client from './Data';
+import client from './Axios';
 
 const SetStat = async (code_event=null, id_anncs=null) => {
    
